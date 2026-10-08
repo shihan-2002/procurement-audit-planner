@@ -1,6 +1,9 @@
 # Procurement audit planning: risk register
 
-*Status: DRAFT for auditor review (Phase 2 gate).*
+*Status: REVISION 1 for auditor sign-off.*
+
+*Revision 1, following auditor comments dated 2026-10-08.
+Changed: R-09 (amended), R-10 (rejected).*
 
 **Indicators, not findings.** Every risk describes a pattern in public data or a control to test. Nothing here asserts wrongdoing by the council, a department, an officer or a supplier.
 
@@ -33,12 +36,11 @@ Scale: the council's own method from the Risk Management Strategy 2024-27 as rec
 | R-02 | Requirements split so each payment stays below the quote threshold | 4 | 3 | 12 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-06 | Spend running ahead of the awarded contract value without an approved variation | 3 | 4 | 12 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-08 | Care and education placements without recorded reasons or board approval | 4 | 3 | 12 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
+| R-09 | Key Decision and delegated-authority approvals for awards above the Key Decision threshold | 3 | 4 | 12 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-04 | High-value suppliers with no published contract notice | 3 | 3 | 9 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-05 | Spend after a contract notice ended without an approved extension | 3 | 3 | 9 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-07 | Possible duplicate payments to the same supplier | 3 | 3 | 9 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
-| R-09 | Key Decision and delegated-authority approvals for awards above the Key Decision threshold | 2 | 4 | 8 | High | Medium - High | Allocate to Service Director to put in place Controls Assurance. | in |
 | R-03 | Payments bunched just below the quote threshold | 2 | 3 | 6 | Moderate | Moderate | Monitor risk | in |
-| R-10 | Grants treated outside the Rules | 2 | 3 | 6 | Moderate | Moderate | Monitor risk | out |
 
 ## Risks
 
@@ -125,6 +127,26 @@ Individually chosen care and education placements are exempt from competition on
 
 **Sample source.** `analytics-full/split-purchases-windows.csv`
 
+### R-09: Key Decision and delegated-authority approvals for awards above the Key Decision threshold *(auditor override)*
+
+Contract awards above the Key Decision threshold need a Key Decision with a board-approved report, and the largest need Executive approval [CPR-04] [CPR-53] [CPR-54].
+
+- **Likelihood 3 (Likely).** Auditor override: "Raise likelihood to 3: awards above the Key Decision threshold are rare but carry the highest stakes." The data shows 3 general-procurement windows reaching £500,000; the approvals themselves are not visible, so the evidence alone supported 2 [CPR-04].
+- **Impact 4 (Major).** Awards at this level sit in the Major financial band and an award without its Key Decision has a high possibility of legal challenge [CPR-53]; the windows total £5,133,960.69.
+- **Score 12: High; band Medium - High.** Recommended in scope.
+
+**Evidence**
+
+- [rule:CPR-04] clause 4.3: "Any contract award with a value over £500,000 is a Key Decision of the Council."
+- [rule:CPR-53] clause App A row 3: "The award of these contracts shall be a Key Decision delegated to the relevant Service Director in consultatio…"
+- [rule:CPR-54] clause App A row 4: "Contracts with a value in excess of £2.5million shall require Executive approval, which may be given as below."
+- [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows] general-procurement windows at the Key Decision threshold: 3
+- [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp] their value (£): 5,133,960.69
+
+**Proposed focus.** For suppliers whose spend reaches the Key Decision threshold, obtain the Key Decision record, the board-approved report and, where required, the Executive approval.
+
+**Sample source.** `analytics-full/split-purchases-windows.csv`
+
 ### R-04: High-value suppliers with no published contract notice
 
 Spend at or above the quote threshold should rest on a contract notice published on the Central Digital Platform and on a contract recorded in the Council Contract Register [CPR-56] [CPR-36]. A supplier with no matching notice is an indicator to check against the register, not evidence of off-contract spend.
@@ -184,26 +206,6 @@ Payments of the same amount to the same supplier within seven days, made at diff
 
 **Sample source.** `analytics-full/duplicates-groups.csv`
 
-### R-09: Key Decision and delegated-authority approvals for awards above the Key Decision threshold
-
-Contract awards above the Key Decision threshold need a Key Decision with a board-approved report, and the largest need Executive approval [CPR-04] [CPR-53] [CPR-54].
-
-- **Likelihood 2 (Unlikely).** Only 3 general-procurement windows reach £500,000; the approvals themselves are not visible in the data, so the rating rests on the Rule and the gap [CPR-04].
-- **Impact 4 (Major).** Awards at this level sit in the Major financial band and an award without its Key Decision has a high possibility of legal challenge [CPR-53]; the windows total £5,133,960.69.
-- **Score 8: High; band Medium - High.** Recommended in scope.
-
-**Evidence**
-
-- [rule:CPR-04] clause 4.3: "Any contract award with a value over £500,000 is a Key Decision of the Council."
-- [rule:CPR-53] clause App A row 3: "The award of these contracts shall be a Key Decision delegated to the relevant Service Director in consultatio…"
-- [rule:CPR-54] clause App A row 4: "Contracts with a value in excess of £2.5million shall require Executive approval, which may be given as below."
-- [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows] general-procurement windows at the Key Decision threshold: 3
-- [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp] their value (£): 5,133,960.69
-
-**Proposed focus.** For suppliers whose spend reaches the Key Decision threshold, obtain the Key Decision record, the board-approved report and, where required, the Executive approval.
-
-**Sample source.** `analytics-full/split-purchases-windows.csv`
-
 ### R-03: Payments bunched just below the quote threshold
 
 Payments placed just below a threshold can indicate values set to avoid the next procurement route [CPR-55] [CPR-56].
@@ -224,25 +226,6 @@ Payments placed just below a threshold can indicate values set to avoid the next
 
 **Sample source.** `analytics-full/threshold-clustering.csv`
 
-### R-10: Grants treated outside the Rules
-
-The Rules treat providing a grant as entering a contract, so grants need written evidence and an award record like any purchase [CPR-33] [CPR-36].
-
-- **Likelihood 2 (Unlikely).** 339 grant payments to 198 recipients are in the window; grant awards are not visible as contracts in the data, so the rating rests on the Rule and the gap.
-- **Impact 3 (Medium).** Grant spend of £6,033,599.82 treated outside the Rules has a reasonable possibility of challenge [CPR-33].
-- **Score 6: Moderate; band Moderate.** Recommended out of scope.
-
-**Evidence**
-
-- [rule:CPR-33] clause 10.1: "There should be written evidence of all purchases (which shall include electronic evidence)."
-- [rule:CPR-36] clause 10.4: "The relevant Service Director must formally notify the Service Lead for Commissioning and Procurement (or nomi…"
-- [metric:$.population.tags.grant.rows] grant payments: 339
-- [metric:$.population.tags.grant.gbp] grant spend (£): 6,033,599.82
-
-**Proposed focus.** For the largest grant recipients, obtain the grant agreement and the approval, and confirm the award was recorded.
-
-**Sample source.** `analytics-full/high-value-suppliers.csv`
-
 ## Excluded
 
 Themes considered and not rated, and risks removed at the gate.
@@ -253,7 +236,16 @@ Themes considered and not rated, and risks removed at the gate.
 - Payment within thirty days (10.7.9.1): the spend Date is a payment-run timestamp, not an invoice date, so payment terms cannot be measured
 - Statutory-threshold tiers: the statutory Threshold parameters are null in rules.json, so above-Threshold tiers were skipped by the spend analysis
 - Clustering below the Key Decision and Executive thresholds: no payments fall in the band below those thresholds
+- R-10: Grants treated outside the Rules: rejected by the auditor at the gate: Grants will be covered by a separate review.
 
 ## Auditor decisions
 
-None recorded yet. The auditor records approve, amend or reject for each risk in `outputs/auditor-comments.md`; the risk-assessor then applies them in a revision.
+Decisions by Shihan Wang dated 2026-10-08, applied in revision 1.
+
+| ID | Decision | Applied as |
+|---|---|---|
+| R-01 | approve | kept as rated |
+| R-09 | amend | amended (auditor override) |
+| R-10 | reject | rejected; moved to excluded |
+
+Still undecided: R-02, R-03, R-04, R-05, R-06, R-07, R-08.

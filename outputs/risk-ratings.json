@@ -6,10 +6,19 @@
       "theme": "quotes_tenders",
       "title": "Quotes or tenders not evidenced for spend at or above the quote threshold",
       "statement": "Suppliers whose annualised spend reaches the three-quote threshold should each be backed by a competitive process run through the Procurement Portal and by written evidence of the purchase [rule:CPR-56] [rule:CPR-33]. Where that evidence is missing, the purchase may not have followed the Rules.",
-      "likelihood": {"score": 4, "justification": "{{$.tests.high_value_suppliers.headline_general_procurement.suppliers}} general-procurement suppliers have an annualised estimate at or above £{{$.tests.high_value_suppliers.parameters.threshold}} [metric:$.tests.high_value_suppliers.headline_general_procurement.suppliers], a pattern that recurs across many suppliers. The most recent Contract Letting audit gave Reasonable Assurance [history:AUD-08], so no uplift applies."},
-      "impact": {"score": 3, "justification": "The annualised value exposed is £{{$.tests.high_value_suppliers.headline_general_procurement.annualised_estimate}} [metric:$.tests.high_value_suppliers.headline_general_procurement.annualised_estimate]. A competition rule breached on contracts of this size carries a reasonable possibility of successful legal challenge, the Medium compliance level of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-56]. The compliance column drove the rating; the £ figure is spend exposed, not loss."},
+      "likelihood": {
+        "score": 4,
+        "justification": "{{$.tests.high_value_suppliers.headline_general_procurement.suppliers}} general-procurement suppliers have an annualised estimate at or above £{{$.tests.high_value_suppliers.parameters.threshold}} [metric:$.tests.high_value_suppliers.headline_general_procurement.suppliers], a pattern that recurs across many suppliers. The most recent Contract Letting audit gave Reasonable Assurance [history:AUD-08], so no uplift applies."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "The annualised value exposed is £{{$.tests.high_value_suppliers.headline_general_procurement.annualised_estimate}} [metric:$.tests.high_value_suppliers.headline_general_procurement.annualised_estimate]. A competition rule breached on contracts of this size carries a reasonable possibility of successful legal challenge, the Medium compliance level of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-56]. The compliance column drove the rating; the £ figure is spend exposed, not loss."
+      },
       "evidence": [
-        "[rule:CPR-56]", "[rule:CPR-57]", "[rule:CPR-33]", "[rule:CPR-22]",
+        "[rule:CPR-56]",
+        "[rule:CPR-57]",
+        "[rule:CPR-33]",
+        "[rule:CPR-22]",
         "[metric:$.tests.high_value_suppliers.headline_general_procurement.suppliers] general-procurement suppliers at or above the quote threshold",
         "[metric:$.tests.high_value_suppliers.headline_general_procurement.annualised_estimate] their annualised estimate (£)",
         "[history:AUD-08]"
@@ -23,10 +32,17 @@
       "theme": "split_purchases",
       "title": "Requirements split so each payment stays below the quote threshold",
       "statement": "Several payments to one supplier within thirty days that together reach a competition threshold, while each stays below it, may indicate a requirement that was not aggregated before the procurement route was chosen [rule:CPR-14].",
-      "likelihood": {"score": 4, "justification": "{{$.tests.split_purchases.per_threshold[0].headline_general_procurement.windows}} thirty-day windows across {{$.tests.split_purchases.per_threshold[0].headline_general_procurement.suppliers}} general-procurement suppliers reach £{{$.tests.split_purchases.per_threshold[0].threshold}} [metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.windows]. The published population omits payments below its transparency floor, so these counts are a lower bound."},
-      "impact": {"score": 3, "justification": "The windows total £{{$.tests.split_purchases.per_threshold[0].headline_general_procurement.gbp}} [metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.gbp]. Disaggregation to avoid the three-quote route is a breach of a mandatory Rule with a reasonable possibility of challenge [rule:CPR-14] [history:$.scoring_method.impact_scale[2]]."},
+      "likelihood": {
+        "score": 4,
+        "justification": "{{$.tests.split_purchases.per_threshold[0].headline_general_procurement.windows}} thirty-day windows across {{$.tests.split_purchases.per_threshold[0].headline_general_procurement.suppliers}} general-procurement suppliers reach £{{$.tests.split_purchases.per_threshold[0].threshold}} [metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.windows]. The published population omits payments below its transparency floor, so these counts are a lower bound."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "The windows total £{{$.tests.split_purchases.per_threshold[0].headline_general_procurement.gbp}} [metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.gbp]. Disaggregation to avoid the three-quote route is a breach of a mandatory Rule with a reasonable possibility of challenge [rule:CPR-14] [history:$.scoring_method.impact_scale[2]]."
+      },
       "evidence": [
-        "[rule:CPR-14]", "[rule:CPR-56]",
+        "[rule:CPR-14]",
+        "[rule:CPR-56]",
         "[metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.windows] split windows in general procurement",
         "[metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.suppliers] suppliers with a split window",
         "[metric:$.tests.split_purchases.per_threshold[0].headline_general_procurement.gbp] value of those windows (£)"
@@ -40,10 +56,17 @@
       "theme": "threshold_clustering",
       "title": "Payments bunched just below the quote threshold",
       "statement": "Payments placed just below a threshold can indicate values set to avoid the next procurement route [rule:CPR-55] [rule:CPR-56].",
-      "likelihood": {"score": 2, "justification": "{{$.tests.threshold_clustering.per_threshold[1].general_procurement.count}} general-procurement payments fall within ten per cent below £{{$.tests.threshold_clustering.per_threshold[1].threshold}} [metric:$.tests.threshold_clustering.per_threshold[1].general_procurement.count], while {{$.tests.threshold_clustering.per_threshold[1].comparator_above.count}} payments sit just above it [metric:$.tests.threshold_clustering.per_threshold[1].comparator_above.count]. There is no bunching below the line, so the signal is weak."},
-      "impact": {"score": 3, "justification": "A value set to avoid the three-quote route breaches a mandatory Rule [rule:CPR-56]; Medium compliance impact [history:$.scoring_method.impact_scale[2]]."},
+      "likelihood": {
+        "score": 2,
+        "justification": "{{$.tests.threshold_clustering.per_threshold[1].general_procurement.count}} general-procurement payments fall within ten per cent below £{{$.tests.threshold_clustering.per_threshold[1].threshold}} [metric:$.tests.threshold_clustering.per_threshold[1].general_procurement.count], while {{$.tests.threshold_clustering.per_threshold[1].comparator_above.count}} payments sit just above it [metric:$.tests.threshold_clustering.per_threshold[1].comparator_above.count]. There is no bunching below the line, so the signal is weak."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "A value set to avoid the three-quote route breaches a mandatory Rule [rule:CPR-56]; Medium compliance impact [history:$.scoring_method.impact_scale[2]]."
+      },
       "evidence": [
-        "[rule:CPR-55]", "[rule:CPR-56]",
+        "[rule:CPR-55]",
+        "[rule:CPR-56]",
         "[metric:$.tests.threshold_clustering.per_threshold[1].count] payments within ten per cent below the quote threshold",
         "[metric:$.tests.threshold_clustering.per_threshold[1].general_procurement.count] of which general procurement",
         "[metric:$.tests.threshold_clustering.per_threshold[1].comparator_above.count] payments just above the threshold"
@@ -57,10 +80,18 @@
       "theme": "off_contract",
       "title": "High-value suppliers with no published contract notice",
       "statement": "Spend at or above the quote threshold should rest on a contract notice published on the Central Digital Platform and on a contract recorded in the Council Contract Register [rule:CPR-56] [rule:CPR-36]. A supplier with no matching notice is an indicator to check against the register, not evidence of off-contract spend.",
-      "likelihood": {"score": 3, "justification": "{{$.tests.off_contract.headline_unmatched_general_procurement.suppliers}} general-procurement suppliers above the threshold have no matching notice active in the spend window [metric:$.tests.off_contract.headline_unmatched_general_procurement.suppliers]. The signal is strong, but the notices file is not a register: older awards, framework call-offs and Find a Tender notices are missing from it, so many gaps can be legitimate [metric:$.contracts.active_in_window]."},
-      "impact": {"score": 3, "justification": "The unmatched suppliers account for an annualised £{{$.tests.off_contract.headline_unmatched_general_procurement.annualised_estimate}} [metric:$.tests.off_contract.headline_unmatched_general_procurement.annualised_estimate]. Missing publication and register records breach the transparency Rules with a reasonable possibility of regulatory interest [rule:CPR-08] [history:$.scoring_method.impact_scale[2]]."},
+      "likelihood": {
+        "score": 3,
+        "justification": "{{$.tests.off_contract.headline_unmatched_general_procurement.suppliers}} general-procurement suppliers above the threshold have no matching notice active in the spend window [metric:$.tests.off_contract.headline_unmatched_general_procurement.suppliers]. The signal is strong, but the notices file is not a register: older awards, framework call-offs and Find a Tender notices are missing from it, so many gaps can be legitimate [metric:$.contracts.active_in_window]."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "The unmatched suppliers account for an annualised £{{$.tests.off_contract.headline_unmatched_general_procurement.annualised_estimate}} [metric:$.tests.off_contract.headline_unmatched_general_procurement.annualised_estimate]. Missing publication and register records breach the transparency Rules with a reasonable possibility of regulatory interest [rule:CPR-08] [history:$.scoring_method.impact_scale[2]]."
+      },
       "evidence": [
-        "[rule:CPR-56]", "[rule:CPR-36]", "[rule:CPR-08]",
+        "[rule:CPR-56]",
+        "[rule:CPR-36]",
+        "[rule:CPR-08]",
         "[metric:$.tests.off_contract.headline_unmatched_general_procurement.suppliers] general-procurement suppliers with no matching notice",
         "[metric:$.tests.off_contract.headline_unmatched_general_procurement.annualised_estimate] their annualised estimate (£)",
         "[metric:$.contracts.active_in_window] notices active in the spend window"
@@ -74,10 +105,17 @@
       "theme": "expired_notice_spend",
       "title": "Spend after a contract notice ended without an approved extension",
       "statement": "Payments to a supplier whose every published notice ended before the spend window may indicate a contract extended without the S151 Officer's approval [rule:CPR-63]; a newer contract with no notice is also possible.",
-      "likelihood": {"score": 3, "justification": "{{$.tests.expired_notice_spend.suppliers}} suppliers were paid after their only matched notices ended [metric:$.tests.expired_notice_spend.suppliers], a clear signal confined to a few suppliers."},
-      "impact": {"score": 3, "justification": "The annualised spend involved is £{{$.tests.expired_notice_spend.annualised_estimate}} [metric:$.tests.expired_notice_spend.annualised_estimate]. An unapproved extension breaches Appendix C row D, with a reasonable possibility of challenge [rule:CPR-63] [history:$.scoring_method.impact_scale[2]]."},
+      "likelihood": {
+        "score": 3,
+        "justification": "{{$.tests.expired_notice_spend.suppliers}} suppliers were paid after their only matched notices ended [metric:$.tests.expired_notice_spend.suppliers], a clear signal confined to a few suppliers."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "The annualised spend involved is £{{$.tests.expired_notice_spend.annualised_estimate}} [metric:$.tests.expired_notice_spend.annualised_estimate]. An unapproved extension breaches Appendix C row D, with a reasonable possibility of challenge [rule:CPR-63] [history:$.scoring_method.impact_scale[2]]."
+      },
       "evidence": [
-        "[rule:CPR-63]", "[rule:CPR-36]",
+        "[rule:CPR-63]",
+        "[rule:CPR-36]",
         "[metric:$.tests.expired_notice_spend.suppliers] suppliers paid after their notices ended",
         "[metric:$.tests.expired_notice_spend.annualised_estimate] their annualised estimate (£)"
       ],
@@ -90,8 +128,14 @@
       "theme": "spend_vs_award",
       "title": "Spend running ahead of the awarded contract value without an approved variation",
       "statement": "Annualised spend well above the annual rate of the awarded value may indicate a variation of scope that needed prior approval [rule:CPR-64]; award values can be estimates or maxima.",
-      "likelihood": {"score": 3, "justification": "{{$.tests.spend_vs_award.flagged}} of {{$.tests.spend_vs_award.checked}} checkable suppliers show spend at or above the flag ratio of the award's annual rate [metric:$.tests.spend_vs_award.flagged], a clear signal confined to a few contracts."},
-      "impact": {"score": 4, "justification": "The flagged suppliers account for an annualised £{{$.tests.spend_vs_award.flagged_annualised_estimate}} [metric:$.tests.spend_vs_award.flagged_annualised_estimate], within the Major financial band of Table 1 [history:$.scoring_method.impact_scale[1]]. Variations above the Threshold need board approval [rule:CPR-64]."},
+      "likelihood": {
+        "score": 3,
+        "justification": "{{$.tests.spend_vs_award.flagged}} of {{$.tests.spend_vs_award.checked}} checkable suppliers show spend at or above the flag ratio of the award's annual rate [metric:$.tests.spend_vs_award.flagged], a clear signal confined to a few contracts."
+      },
+      "impact": {
+        "score": 4,
+        "justification": "The flagged suppliers account for an annualised £{{$.tests.spend_vs_award.flagged_annualised_estimate}} [metric:$.tests.spend_vs_award.flagged_annualised_estimate], within the Major financial band of Table 1 [history:$.scoring_method.impact_scale[1]]. Variations above the Threshold need board approval [rule:CPR-64]."
+      },
       "evidence": [
         "[rule:CPR-64]",
         "[metric:$.tests.spend_vs_award.flagged] suppliers flagged",
@@ -107,8 +151,14 @@
       "theme": "duplicates",
       "title": "Possible duplicate payments to the same supplier",
       "statement": "Payments of the same amount to the same supplier within seven days, made at different times, may indicate an invoice paid twice; the Rules require written evidence of every purchase [rule:CPR-33].",
-      "likelihood": {"score": 3, "justification": "{{$.tests.duplicates.per_tier.different_time.general_procurement.groups}} general-procurement groups were paid at different times [metric:$.tests.duplicates.per_tier.different_time.general_procurement.groups], a clear signal confined to a limited number of suppliers. The Accounts Payable audit gave Reasonable Assurance [history:AUD-02], so no uplift applies."},
-      "impact": {"score": 3, "justification": "The value beyond the first payment in those groups is £{{$.tests.duplicates.per_tier.different_time.general_procurement.gbp_beyond_first}} [metric:$.tests.duplicates.per_tier.different_time.general_procurement.gbp_beyond_first], within the Medium financial band of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-33]."},
+      "likelihood": {
+        "score": 3,
+        "justification": "{{$.tests.duplicates.per_tier.different_time.general_procurement.groups}} general-procurement groups were paid at different times [metric:$.tests.duplicates.per_tier.different_time.general_procurement.groups], a clear signal confined to a limited number of suppliers. The Accounts Payable audit gave Reasonable Assurance [history:AUD-02], so no uplift applies."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "The value beyond the first payment in those groups is £{{$.tests.duplicates.per_tier.different_time.general_procurement.gbp_beyond_first}} [metric:$.tests.duplicates.per_tier.different_time.general_procurement.gbp_beyond_first], within the Medium financial band of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-33]."
+      },
       "evidence": [
         "[rule:CPR-33]",
         "[metric:$.tests.duplicates.per_tier.different_time.general_procurement.groups] different-time duplicate groups, general procurement",
@@ -124,14 +174,25 @@
       "theme": "placements",
       "title": "Care and education placements without recorded reasons or board approval",
       "statement": "Individually chosen care and education placements are exempt from competition only if the reasons for the choice of provider are recorded, and above the Threshold the contract must be approved by the relevant board [rule:CPR-65] [rule:CPR-66].",
-      "likelihood": {"score": 4, "justification": "Placements are the largest tag in the spend, £{{$.population.tags.care_or_education_placement.gbp}} over the window [metric:$.population.tags.care_or_education_placement.gbp], and {{$.tests.split_purchases.per_threshold[0].placements.windows}} placement windows reach the quote threshold [metric:$.tests.split_purchases.per_threshold[0].placements.windows]; recurring fees can be legitimate, so the base rating is 3. Likelihood is raised by one point for a repeat finding: Personal Budgets (Direct Payments) received Limited Assurance [history:AUD-03]."},
-      "impact": {"score": 3, "justification": "Placement spend is material and an exemption applied without its records has a reasonable possibility of challenge; external criticism by inspectors is the Medium reputation level of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-65]."},
-      "uplift": {"history": "AUD-03", "reason": "Limited Assurance on Personal Budgets (Direct Payments), a placement-type purchasing route"},
+      "likelihood": {
+        "score": 4,
+        "justification": "Placements are the largest tag in the spend, £{{$.population.tags.care_or_education_placement.gbp}} over the window [metric:$.population.tags.care_or_education_placement.gbp], and {{$.tests.split_purchases.per_threshold[0].placements.windows}} placement windows reach the quote threshold [metric:$.tests.split_purchases.per_threshold[0].placements.windows]; recurring fees can be legitimate, so the base rating is 3. Likelihood is raised by one point for a repeat finding: Personal Budgets (Direct Payments) received Limited Assurance [history:AUD-03]."
+      },
+      "impact": {
+        "score": 3,
+        "justification": "Placement spend is material and an exemption applied without its records has a reasonable possibility of challenge; external criticism by inspectors is the Medium reputation level of Table 1 [history:$.scoring_method.impact_scale[2]] [rule:CPR-65]."
+      },
+      "uplift": {
+        "history": "AUD-03",
+        "reason": "Limited Assurance on Personal Budgets (Direct Payments), a placement-type purchasing route"
+      },
       "evidence": [
-        "[rule:CPR-65]", "[rule:CPR-66]",
+        "[rule:CPR-65]",
+        "[rule:CPR-66]",
         "[metric:$.population.tags.care_or_education_placement.gbp] placement spend in the window (£)",
         "[metric:$.tests.split_purchases.per_threshold[0].placements.windows] placement windows reaching the quote threshold",
-        "[history:AUD-03]", "[history:AUD-05]"
+        "[history:AUD-03]",
+        "[history:AUD-05]"
       ],
       "proposed_focus": "For a sample of placement suppliers, inspect case notes for the recorded reasons for the choice of provider and, above the Threshold, the board approval.",
       "sample_source": "split-purchases-windows.csv",
@@ -142,40 +203,69 @@
       "theme": "key_decisions",
       "title": "Key Decision and delegated-authority approvals for awards above the Key Decision threshold",
       "statement": "Contract awards above the Key Decision threshold need a Key Decision with a board-approved report, and the largest need Executive approval [rule:CPR-04] [rule:CPR-53] [rule:CPR-54].",
-      "likelihood": {"score": 2, "justification": "Only {{$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows}} general-procurement windows reach £{{$.tests.split_purchases.per_threshold[1].threshold}} [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows]; the approvals themselves are not visible in the data, so the rating rests on the Rule and the gap [rule:CPR-04]."},
-      "impact": {"score": 4, "justification": "Awards at this level sit in the Major financial band and an award without its Key Decision has a high possibility of legal challenge [history:$.scoring_method.impact_scale[1]] [rule:CPR-53]; the windows total £{{$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp}} [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp]."},
+      "likelihood": {
+        "score": 3,
+        "justification": "Auditor override: \"Raise likelihood to 3: awards above the Key Decision threshold are rare but carry the highest stakes.\" The data shows {{$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows}} general-procurement windows reaching £{{$.tests.split_purchases.per_threshold[1].threshold}} [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows]; the approvals themselves are not visible, so the evidence alone supported 2 [rule:CPR-04]."
+      },
+      "impact": {
+        "score": 4,
+        "justification": "Awards at this level sit in the Major financial band and an award without its Key Decision has a high possibility of legal challenge [history:$.scoring_method.impact_scale[1]] [rule:CPR-53]; the windows total £{{$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp}} [metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp]."
+      },
       "evidence": [
-        "[rule:CPR-04]", "[rule:CPR-53]", "[rule:CPR-54]",
+        "[rule:CPR-04]",
+        "[rule:CPR-53]",
+        "[rule:CPR-54]",
         "[metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.windows] general-procurement windows at the Key Decision threshold",
         "[metric:$.tests.split_purchases.per_threshold[1].headline_general_procurement.gbp] their value (£)"
       ],
       "proposed_focus": "For suppliers whose spend reaches the Key Decision threshold, obtain the Key Decision record, the board-approved report and, where required, the Executive approval.",
       "sample_source": "split-purchases-windows.csv",
-      "recommend_in_scope": true
-    },
-    {
-      "id": "R-10",
-      "theme": "grants",
-      "title": "Grants treated outside the Rules",
-      "statement": "The Rules treat providing a grant as entering a contract, so grants need written evidence and an award record like any purchase [rule:CPR-33] [rule:CPR-36].",
-      "likelihood": {"score": 2, "justification": "{{$.population.tags.grant.rows}} grant payments to {{$.population.tags.grant.suppliers}} recipients are in the window [metric:$.population.tags.grant.rows]; grant awards are not visible as contracts in the data, so the rating rests on the Rule and the gap."},
-      "impact": {"score": 3, "justification": "Grant spend of £{{$.population.tags.grant.gbp}} [metric:$.population.tags.grant.gbp] treated outside the Rules has a reasonable possibility of challenge [history:$.scoring_method.impact_scale[2]] [rule:CPR-33]."},
-      "evidence": [
-        "[rule:CPR-33]", "[rule:CPR-36]",
-        "[metric:$.population.tags.grant.rows] grant payments",
-        "[metric:$.population.tags.grant.gbp] grant spend (£)"
-      ],
-      "proposed_focus": "For the largest grant recipients, obtain the grant agreement and the approval, and confirm the award was recorded.",
-      "sample_source": "high-value-suppliers.csv",
-      "recommend_in_scope": false
+      "recommend_in_scope": true,
+      "auditor_override": true
     }
   ],
   "excluded": [
-    {"theme": "Waivers and exceptions (7.3, 7.4, 7.5)", "reason": "no observable metric in public data; waiver approvals are tested within R-01, where a missing quote record may be explained by an approved waiver [rule:CPR-22]"},
-    {"theme": "Tender opening, evaluation and award basis (6.19-6.26)", "reason": "council-records only; no signal in the spend or notice data to rate likelihood"},
-    {"theme": "Sealing, bonds, indemnities and insurance (11.x)", "reason": "legal-file controls with no signal in the data; outside a spend-led procurement audit"},
-    {"theme": "Payment within thirty days (10.7.9.1)", "reason": "the spend Date is a payment-run timestamp, not an invoice date, so payment terms cannot be measured"},
-    {"theme": "Statutory-threshold tiers", "reason": "the statutory Threshold parameters are null in rules.json, so above-Threshold tiers were skipped by the spend analysis [metric:$.contracts.register_present]"},
-    {"theme": "Clustering below the Key Decision and Executive thresholds", "reason": "no payments fall in the band below those thresholds [metric:$.tests.threshold_clustering.per_threshold[2].count]"}
-  ]
+    {
+      "theme": "Waivers and exceptions (7.3, 7.4, 7.5)",
+      "reason": "no observable metric in public data; waiver approvals are tested within R-01, where a missing quote record may be explained by an approved waiver [rule:CPR-22]"
+    },
+    {
+      "theme": "Tender opening, evaluation and award basis (6.19-6.26)",
+      "reason": "council-records only; no signal in the spend or notice data to rate likelihood"
+    },
+    {
+      "theme": "Sealing, bonds, indemnities and insurance (11.x)",
+      "reason": "legal-file controls with no signal in the data; outside a spend-led procurement audit"
+    },
+    {
+      "theme": "Payment within thirty days (10.7.9.1)",
+      "reason": "the spend Date is a payment-run timestamp, not an invoice date, so payment terms cannot be measured"
+    },
+    {
+      "theme": "Statutory-threshold tiers",
+      "reason": "the statutory Threshold parameters are null in rules.json, so above-Threshold tiers were skipped by the spend analysis [metric:$.contracts.register_present]"
+    },
+    {
+      "theme": "Clustering below the Key Decision and Executive thresholds",
+      "reason": "no payments fall in the band below those thresholds [metric:$.tests.threshold_clustering.per_threshold[2].count]"
+    },
+    {
+      "id": "R-10",
+      "theme": "Grants treated outside the Rules",
+      "reason": "rejected by the auditor at the gate: Grants will be covered by a separate review."
+    }
+  ],
+  "revision": {
+    "number": 1,
+    "changed": [
+      {
+        "id": "R-09",
+        "change": "amended"
+      },
+      {
+        "id": "R-10",
+        "change": "rejected"
+      }
+    ]
+  }
 }

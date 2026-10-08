@@ -1,5 +1,5 @@
 {
-  "revision": 0,
+  "revision": 1,
   "risks": {
     "R-01": {
       "L": 4,
@@ -42,14 +42,9 @@
       "in_scope": true
     },
     "R-09": {
-      "L": 2,
+      "L": 3,
       "I": 4,
       "in_scope": true
-    },
-    "R-10": {
-      "L": 2,
-      "I": 3,
-      "in_scope": false
     }
   }
 }
