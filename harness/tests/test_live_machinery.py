@@ -102,7 +102,29 @@ def test_agent_loop(ws):
     kw = fc.calls[0][1]
     assert kw["model"] == "claude-opus-5-5" and kw["thinking"] == {"type": "adaptive"} and kw["fallbacks"] == "default"
     assert all(t["eager_input_streaming"] for t in kw["tools"])
-    print(f"agent loop: {len(fc.calls)} model calls, parallel tool results, schema rejection, error results OK")
+    err = json.loads(results[2]["content"])
+    assert err["error"] == "not_found" and err["retryable"] is False, err
+    assert json.loads(results[3]["content"])["error"] == "invalid_input"
+    print(f"agent loop: {len(fc.calls)} model calls, parallel tool results, schema rejection, typed error results OK")
+
+
+def test_hooks(ws):
+    fc = patch_stream(FakeClient({"You are the challenger": [
+        msg(tool_use("Write", file_path="outputs/audit-plan.json", content="{}"),        # planner's file
+            tool_use("Write", file_path="data/contracts.csv", content="x"),            # read-only input
+            tool_use("Write", file_path="outputs/challenges.md", content="# ok")),     # its own file
+        msg(text("done"), stop="end_turn"),
+    ]}))
+    events = []
+    a = Agent.from_file(ws / ".claude/agents/challenger.md", ws, fc, events.append, sandbox=Sandbox(root=ws))
+    a.run("test")
+    res = [b for m in a.messages if m["role"] == "user" and isinstance(m["content"], list) for b in m["content"]]
+    e0, e1 = json.loads(res[0]["content"]), json.loads(res[1]["content"])
+    assert e0["error"] == "blocked_by_policy" and "belongs to another agent" in e0["message"], e0
+    assert e1["error"] == "blocked_by_policy" and "read-only" in e1["message"], e1
+    assert not res[2].get("is_error") and (ws / "outputs/challenges.md").exists()
+    assert not (ws / "outputs/audit-plan.json").exists()
+    print("hooks: PreToolUse blocked another agent's file and data/, allowed the agent's own file OK")
 
 
 def test_team(ws):
@@ -144,6 +166,7 @@ def main():
         r.create_workspace()
         test_sandbox(r.ws)
         test_agent_loop(r.ws)
+        test_hooks(r.ws)
         test_team(r.ws)
         print("ALL MACHINERY TESTS PASSED")
     finally:

@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
+from .hooks import Hooks, error_json
 from .tools import TOOL_SPECS, Sandbox, ToolError, validate
 
 MODEL = os.environ.get("HARNESS_MODEL", "claude-opus-5-5")
@@ -83,6 +84,7 @@ class Agent:
     stop_flag: threading.Event = field(default_factory=threading.Event)
     turns: int = 0
     last_text: str = ""
+    hooks: object = None
 
     # ---------------------------------------------------------------- build
     @classmethod
@@ -135,8 +137,8 @@ class Agent:
             results = []
             for b in uses:
                 if resp.stop_reason == "max_tokens":
-                    results.append(self._err(b, "Your tool call was cut off at the output limit and was not run. "
-                                                "Write large files in smaller parts (Write a first part, then Edit to append)."))
+                    results.append(self._err(b, "truncated_input", "Your tool call was cut off at the output limit and was not run.",
+                                             retryable=True, hint="Write large files in smaller parts (Write a first part, then Edit to append)."))
                     continue
                 results.append(self._exec(b))
             self.messages.append({"role": "user", "content": results})
@@ -164,26 +166,34 @@ class Agent:
                 raise
         raise RuntimeError(f"{self.name}: model call failed repeatedly")
 
-    def _err(self, b, msg):
-        self.emit({"type": "tool_error", "agent": self.name, "tool": b.name, "text": msg})
-        return {"type": "tool_result", "tool_use_id": b.id, "content": msg, "is_error": True}
+    def _err(self, b, code, message, retryable=False, **extra):
+        """Typed error result: the model sees a stable code and whether a retry can help, not prose."""
+        content = error_json(code, message, retryable, **extra)
+        self.emit({"type": "tool_error", "agent": self.name, "tool": b.name, "text": content})
+        return {"type": "tool_result", "tool_use_id": b.id, "content": content, "is_error": True}
 
     def _exec(self, b) -> dict:
         args = b.input if isinstance(b.input, dict) else {}
         problem = validate(b.name, b.input)
         if b.name not in self.tools:
-            problem = f"tool {b.name} is not available to {self.name}"
+            return self._err(b, "tool_not_available", f"tool {b.name} is not available to {self.name}")
         if problem:
-            return self._err(b, f"Tool input rejected: {problem}. Re-issue the call with valid input.")
+            return self._err(b, "invalid_input", problem, retryable=True, hint="Re-issue the call with input that matches the tool schema.")
+        if self.hooks is None:
+            self.hooks = Hooks(self.sandbox.root, self.name)
+        blocked = self.hooks.pre_tool_use(b.name, args)          # PreToolUse: before anything runs
+        if blocked:
+            self.emit({"type": "hook", "agent": self.name, "tool": b.name, "text": f"PreToolUse blocked: {blocked['message']}"})
+            return self._err(b, blocked["error"], blocked["message"], blocked["retryable"], hint=blocked.get("hint", ""))
         self.emit({"type": "tool_call", "agent": self.name, "tool": b.name, "input": summarize_input(b.name, args)})
         try:
-            out = self._dispatch(b.name, args)
+            out = self.hooks.post_tool_use(b.name, args, self._dispatch(b.name, args))   # PostToolUse: normalise
             self.emit({"type": "tool_result", "agent": self.name, "tool": b.name, "text": out[:1500]})
             return {"type": "tool_result", "tool_use_id": b.id, "content": out}
         except ToolError as e:
-            return self._err(b, f"Error: {e}")
+            return self._err(b, e.code, str(e), e.retryable)
         except Exception as e:  # never crash the loop on a tool failure
-            return self._err(b, f"Error: {type(e).__name__}: {e}")
+            return self._err(b, "internal_error", f"{type(e).__name__}: {e}", retryable=True)
 
     def _dispatch(self, name, a) -> str:
         s = self.sandbox

@@ -1,6 +1,6 @@
 ---
 name: risk-assessment
-description: Merge outputs/rules.json, outputs/analytics.json and outputs/history.json into outputs/risk-register.md: risks rated likelihood × impact on the council's own scale, every rating cited to a rule, a named metric or a history item, rendered and validated by build_register.py. Loaded by the risk-assessor sub-agent at Phase 1 step 3, and re-run after the auditor gate to apply decisions.
+description: Merge outputs/rules.json, outputs/analytics.json and outputs/history.json into outputs/risk-register.md: risks rated likelihood × impact on the council's own scale, every rating cited to a rule, a named metric or a history item, rendered and validated by build_register.py. Use when building the risk register after both analysts have finished, or when applying the auditor's decisions from outputs/auditor-comments.md as a revision. Loaded by the risk-assessor sub-agent.
 ---
 
 # risk-assessment

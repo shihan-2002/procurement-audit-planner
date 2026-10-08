@@ -42,7 +42,7 @@
     "Clause 7.4.2 contains a drafting slip: 'the appropriate Executive Director provided and an exception report has been approved'.",
     "Appendix C: in the plain text the row letter 'E' prints after the variation text rather than before it, and the extension row (D) and variation row (E) are the only Appendix C circumstances testable against public contract data.",
     "Appendix A row 2 uses lower-case 'threshold' while every other reference uses 'Threshold'; treated as the same defined term.",
-    "Clause 5.2/5.2.1 numbering: the transparency obligations are printed as '5.2 5.2.1' with two separate publication duties (tenders over £5,000; the contracts register) under one number; they are recorded as two rules with the same clause reference.",
+    "Section 5 numbering: plain-text extraction scrambles the left-margin clause numbers on page 3; checked against the rendered page, 5.2 is the £5,000 tender-publication duty and 5.2.1 the contracts register.",
     "Clause 11.2 (performance bond for works over £500,000) is discretionary ('should consider'); only the consequential duties in 11.3 and 11.4 are mandatory."
   ],
   "rules": [
@@ -145,7 +145,7 @@
     },
     {
       "rule_id": "CPR-07",
-      "clause": "5.2.1",
+      "clause": "5.2",
       "page": 3,
       "type": "required-action",
       "scope": "goods-services",
@@ -1245,12 +1245,7 @@
     {
       "clause": "5.1",
       "page": 3,
-      "reason": "numbering only; the text sits under 5.1.1"
-    },
-    {
-      "clause": "5.2",
-      "page": 3,
-      "reason": "numbering only; the text sits under 5.2.1"
+      "reason": "introductory duty to publish; its testable item is captured with 5.1.1 as CPR-06"
     },
     {
       "clause": "6.1",

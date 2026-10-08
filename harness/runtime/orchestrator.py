@@ -53,7 +53,7 @@ STAGES = [
     {"id": "signoff", "title": "Human gate: sign-off", "kind": "human", "lesson": "Lesson 4"},
 ]
 TEMPLATE_ITEMS = ["CLAUDE.md", "requirements.txt", "data", "scripts", ".claude/skills", ".claude/agents",
-                  ".claude/agent-memory", ".claude/settings.json"]
+                  ".claude/agent-memory", ".claude/settings.json", ".claude/hooks"]
 
 
 def now():

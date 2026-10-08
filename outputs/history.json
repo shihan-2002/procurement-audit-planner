@@ -789,7 +789,8 @@
       },
       {
         "level": "Moderate",
-        "rag": "Amber",
+        "rag": null,
+        "rag_note": "shaded yellow in Table 4; no RAG word is printed (the plain text attaches the Medium-High row's '(Amber)' to it)",
         "score_min": 4,
         "score_max": 6,
         "escalation": "None",

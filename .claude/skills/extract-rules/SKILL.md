@@ -1,6 +1,6 @@
 ---
 name: extract-rules
-description: Extract every testable rule from data/contract-rules.pdf into outputs/rules.json with clause references, thresholds, approvers and verified verbatim quotes.
+description: Extract every testable rule from data/contract-rules.pdf into outputs/rules.json with clause references, thresholds, approvers and verified verbatim quotes. Use when the auditor runs /extract-rules or asks to turn the Contract Rules into testable rules, before any spend analysis.
 ---
 
 # extract-rules

@@ -1,0 +1,18 @@
+{
+  "_comment": "Who may write what. Enforced by .claude/hooks/guard.py (Claude Code PreToolUse) and harness/runtime/hooks.py (Part B). Prompts suggest; hooks enforce.",
+  "read_only": ["data/**"],
+  "agents_never_write": [".claude/skills/**", ".claude/agents/**", ".claude/hooks/**", ".claude/settings.json", "scripts/checks/**",
+                         "scripts/verify_history.py", "CLAUDE.md", "outputs/auditor-comments.md"],
+  "everyone": [".scratch/**"],
+  "owners": {
+    "spend-analyst": ["scripts/clean.py", "scripts/analyse.py", "scripts/selfcheck.py", "scripts/common.py",
+                      "outputs/analytics.json", "outputs/analytics-full/**", ".claude/agent-memory/spend-analyst/**"],
+    "findings-analyst": ["outputs/history.json", ".claude/agent-memory/findings-analyst/**"],
+    "risk-assessor": ["outputs/risk-ratings.json", ".claude/agent-memory/risk-assessor/**"],
+    "planner": ["outputs/audit-plan.json", ".claude/agent-memory/planner/**"],
+    "challenger": ["outputs/challenges.md", ".claude/agent-memory/challenger/**"],
+    "qa-reviewer": ["outputs/review.md", ".claude/agent-memory/qa-reviewer/**"]
+  },
+  "bash_deny": ["\\brm\\s+-[a-zA-Z]*r", "\\bcurl\\b", "\\bwget\\b", "\\bgit\\s+(push|reset|checkout|clean)\\b",
+                "(>|>>|\\btee\\b|\\bsed\\s+-i|\\bmv\\b|\\bcp\\b)[^|;&]*\\bdata/"]
+}

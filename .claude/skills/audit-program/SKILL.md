@@ -1,6 +1,6 @@
 ---
 name: audit-program
-description: Turn the auditor-approved risks in outputs/risk-register.md into the audit planning pack: planning-memo.md, risk-control-matrix.md and audit-program.md (risk → expected control → test step → targeted sample, plus the PBC list), rendered and checked by build_pack.py from the planner's judgments in outputs/audit-plan.json. Loaded by the planner teammate at Phase 3.
+description: Turn the auditor-approved risks in outputs/risk-register.md into the audit planning pack: planning-memo.md, risk-control-matrix.md and audit-program.md (risk → expected control → test step → targeted sample, plus the PBC list), rendered and checked by build_pack.py from the planner's judgments in outputs/audit-plan.json. Use only after the auditor gate is closed (build_pack.py --gate passes), to plan controls, tests and samples. Loaded by the planner teammate.
 ---
 
 # audit-program

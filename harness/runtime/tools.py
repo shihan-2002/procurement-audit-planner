@@ -27,7 +27,10 @@ FORBIDDEN = re.compile(r"`|\$\(|\$\{|\bsudo\b|\brm\b|\bcurl\b|\bwget\b|\bssh\b|\
 
 
 class ToolError(Exception):
-    pass
+    """A tool failure the model can act on: a stable code, a message, and whether retrying can help."""
+    def __init__(self, message: str, code: str = "invalid_request", retryable: bool = False):
+        super().__init__(message)
+        self.code, self.retryable = code, retryable
 
 
 @dataclass
@@ -39,17 +42,17 @@ class Sandbox:
 
     def resolve(self, p: str, write: bool = False) -> Path:
         if not p:
-            raise ToolError("empty path")
+            raise ToolError("empty path", "invalid_request")
         q = Path(p)
         q = (self.root / q).resolve() if not q.is_absolute() else q.resolve()
         root = self.root.resolve()
         if q != root and root not in q.parents:
-            raise ToolError(f"path outside the workspace: {p}")
+            raise ToolError(f"path outside the workspace: {p}", "path_outside_workspace")
         rel = q.relative_to(root).as_posix()
         if write and any(rel == r.rstrip("/") or rel.startswith(r) for r in self.readonly):
-            raise ToolError(f"{rel} is read-only input data")
+            raise ToolError(f"{rel} is read-only input data", "read_only")
         if write and (rel.startswith(".venv") or rel == "CLAUDE.md"):
-            raise ToolError(f"{rel} may not be modified")
+            raise ToolError(f"{rel} may not be modified", "read_only")
         return q
 
     def rel(self, q: Path) -> str:
@@ -59,11 +62,11 @@ class Sandbox:
     def read(self, path: str, offset: int = 1, limit: int = READ_LINES) -> str:
         q = self.resolve(path)
         if not q.exists():
-            raise ToolError(f"file not found: {path}")
+            raise ToolError(f"file not found: {path}", "not_found")
         if q.is_dir():
-            raise ToolError(f"{path} is a directory; use Glob or Bash ls")
+            raise ToolError(f"{path} is a directory; use Glob or Bash ls", "is_directory")
         if q.suffix.lower() in (".pdf", ".xlsx", ".xls"):
-            raise ToolError(f"{path} is binary; extract it with pdftotext or read it with pandas via Bash")
+            raise ToolError(f"{path} is binary; extract it with pdftotext or read it with pandas via Bash", "binary_file")
         lines = q.read_text(encoding="utf-8", errors="replace").splitlines()
         start = max(int(offset or 1), 1)
         chunk = lines[start - 1:start - 1 + int(limit or READ_LINES)]
@@ -84,13 +87,13 @@ class Sandbox:
     def edit(self, path: str, old_string: str, new_string: str, replace_all: bool = False) -> str:
         q = self.resolve(path, write=True)
         if not q.exists():
-            raise ToolError(f"file not found: {path}")
+            raise ToolError(f"file not found: {path}", "not_found")
         text = q.read_text(encoding="utf-8")
         n = text.count(old_string)
         if n == 0:
-            raise ToolError("old_string not found in the file")
+            raise ToolError("old_string not found in the file", "edit_no_match")
         if n > 1 and not replace_all:
-            raise ToolError(f"old_string occurs {n} times; make it unique or set replace_all")
+            raise ToolError(f"old_string occurs {n} times; make it unique or set replace_all", "edit_ambiguous")
         q.write_text(text.replace(old_string, new_string) if replace_all else text.replace(old_string, new_string, 1), encoding="utf-8")
         self.written.append(self.rel(q))
         return f"edited {self.rel(q)} ({n if replace_all else 1} replacement(s))"
@@ -111,7 +114,7 @@ class Sandbox:
         try:
             rx = re.compile(pattern)
         except re.error as e:
-            raise ToolError(f"invalid regex: {e}")
+            raise ToolError(f"invalid regex: {e}", "invalid_request")
         files = [base] if base.is_file() else [p for p in sorted(base.rglob("*")) if p.is_file()]
         out = []
         for f in files:
@@ -133,13 +136,13 @@ class Sandbox:
     # ------------------------------------------------------------- bash
     def check_command(self, command: str) -> None:
         if FORBIDDEN.search(command):
-            raise ToolError("command uses a construct the harness does not allow (backticks, $(), rm, network tools, env, ~, ../, /proc)")
+            raise ToolError("command uses a construct the harness does not allow (backticks, $(), rm, network tools, env, ~, ../, /proc)", "command_not_allowed")
         try:
             lex = shlex.shlex(command, posix=True, punctuation_chars=";&|<>")
             lex.whitespace_split = True
             all_toks = list(lex)
         except ValueError as e:
-            raise ToolError(f"cannot parse command: {e}")
+            raise ToolError(f"cannot parse command: {e}", "invalid_command")
         segments, cur = [], []
         for t in all_toks:
             if t in (";", "&&", "||", "|", "&"):
@@ -151,16 +154,16 @@ class Sandbox:
             toks = [t for t in toks if t not in (">", ">>", "<", "2>", "2>&1")]
             while toks and re.fullmatch(r"[A-Z_]+=\S*", toks[0]):
                 if not toks[0].startswith(("PYTHONPATH=", "MPLBACKEND=")):
-                    raise ToolError("only PYTHONPATH= or MPLBACKEND= may prefix a command")
+                    raise ToolError("only PYTHONPATH= or MPLBACKEND= may prefix a command", "command_not_allowed")
                 toks = toks[1:]
             if not toks:
                 continue
             cmd = toks[0]
             if cmd not in ALLOWED_CMDS:
-                raise ToolError(f"'{cmd}' is not on the harness allowlist: {sorted(ALLOWED_CMDS)}")
+                raise ToolError(f"'{cmd}' is not on the harness allowlist: {sorted(ALLOWED_CMDS)}", "command_not_allowed")
             for t in toks[1:]:
                 if t.startswith("/") and not t.startswith("/dev/null"):
-                    raise ToolError("absolute paths are not allowed; use paths relative to the project folder")
+                    raise ToolError("absolute paths are not allowed; use paths relative to the project folder", "path_outside_workspace")
         for m in re.finditer(r">>?\s*([^\s|&;]+)", command):
             target = m.group(1)
             if target.startswith("&") or target == "/dev/null":
@@ -181,7 +184,7 @@ class Sandbox:
             p = subprocess.run(command, shell=True, cwd=self.root, env=env, capture_output=True, text=True,
                                timeout=min(int(timeout or BASH_TIMEOUT), BASH_TIMEOUT), **kw)
         except subprocess.TimeoutExpired:
-            raise ToolError(f"command timed out after {timeout}s")
+            raise ToolError(f"command timed out after {timeout}s", "timeout", retryable=True)
         out = (p.stdout or "") + (("\n[stderr]\n" + p.stderr) if p.stderr.strip() else "")
         if len(out) > MAX_OUT:
             out = out[:MAX_OUT // 2] + f"\n... [{len(out) - MAX_OUT} chars truncated] ...\n" + out[-MAX_OUT // 2:]
