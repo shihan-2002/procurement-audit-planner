@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-10-08",
+  "files": [
+    {
+      "file": "Over500_2026_P02_-_published.xlsx",
+      "header_sheet_row": 1,
+      "rows": 2892,
+      "date_min": "2026-05-01",
+      "date_max": "2026-06-04"
+    },
+    {
+      "file": "Over500_2026_P03_-_published.xlsx",
+      "header_sheet_row": 2,
+      "rows": 3547,
+      "date_min": "2026-06-01",
+      "date_max": "2026-06-30"
+    },
+    {
+      "file": "Over500_2026_P04_-_published.xlsx",
+      "header_sheet_row": 2,
+      "rows": 4168,
+      "date_min": "2026-07-01",
+      "date_max": "2026-07-31"
+    }
+  ],
+  "rows_raw": 10607,
+  "rows_after_exclusions": 8534,
+  "date_min": "2026-05-01",
+  "date_max": "2026-07-31",
+  "months": [
+    "2026-05",
+    "2026-06",
+    "2026-07"
+  ],
+  "months_covered": 3,
+  "total_gbp_raw": 80427254.26,
+  "total_gbp": 66778104.78,
+  "excluded": {
+    "redacted_supplier": {
+      "rows": 2015,
+      "gbp": 2746746.71,
+      "reason": "supplier published as 'Redacted' covers many payees (mostly individuals); unusable for supplier-level tests"
+    },
+    "pension_statutory": {
+      "rows": 12,
+      "gbp": 9235814.93,
+      "reason": "LGPS / pension / superannuation contributions are statutory, not procurement"
+    },
+    "inter_authority": {
+      "rows": 46,
+      "gbp": 1666587.84,
+      "reason": "payments to other public bodies (councils, NHS, police, HMRC, government departments) or joint arrangements; not competed procurement"
+    }
+  },
+  "tags": {
+    "agency_staff": {
+      "rows": 24,
+      "gbp": 1285541.24,
+      "suppliers": 7
+    },
+    "care_or_education_placement": {
+      "rows": 5839,
+      "gbp": 30571711.3,
+      "suppliers": 361
+    },
+    "general_procurement": {
+      "rows": 2130,
+      "gbp": 28321138.16,
+      "suppliers": 519
+    },
+    "grant": {
+      "rows": 339,
+      "gbp": 6033599.82,
+      "suppliers": 198
+    },
+    "premises_non_procurement": {
+      "rows": 202,
+      "gbp": 566114.26,
+      "suppliers": 28
+    }
+  },
+  "regexes": {
+    "redacted": "^\\s*redacted\\s*$",
+    "pension": "LGPS|PENSION|SUPERANNUATION",
+    "inter_authority_supplier": "\\b(?:COUNCIL|BOROUGH|COUNTY|CNCL|NHS|POLICE|FIRE AUTHORITY|FIRE AND RESCUE|HMRC|HM REVENUE|DEPARTMENT FOR|MINISTRY OF)\\b",
+    "inter_authority_narrative": "JOINT ARRANGEMENTS",
+    "grant": "GRANT",
+    "agency": "AGENCY",
+    "premises": "\\bRENTS?\\b|\\bRATES\\b|WATER RATES|LEASE",
+    "placement_services": [
+      "Adult Social Care",
+      "Children's Social Care",
+      "Education"
+    ],
+    "placement_narratives": [
+      "Other agencies",
+      "Private Contractors",
+      "Voluntary Associations"
+    ]
+  },
+  "contracts": {
+    "contracts_present": true,
+    "rows_in_file": 150,
+    "organisation_names_kept": {
+      "West Berkshire Council": 115,
+      "West Berkshire": 20,
+      "WEST BERKSHIRE COUNCIL": 6
+    },
+    "rows_dropped_other_buyers": 9,
+    "rows_for_council": 141,
+    "notices": 141,
+    "notice_supplier_pairs": 210,
+    "distinct_suppliers": 143,
+    "active_in_window": 62,
+    "ended_before_window": 79,
+    "zero_value_awards": 7,
+    "rows_per_year": {
+      "2021": 7,
+      "2022": 10,
+      "2023": 39,
+      "2024": 52,
+      "2025": 28,
+      "2026": 5
+    },
+    "published_range": [
+      "2021-02-23",
+      "2026-09-09"
+    ],
+    "warnings": []
+  },
+  "register_present": false
+}

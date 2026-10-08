@@ -1,0 +1,10 @@
+supplier_norm,supplier,match_class,match_candidate,match_rule,annualised_estimate,dominant_tag
+BAILEYS OF NEWBURY,BAILEYS OF NEWBURY,near_contain,BAILEYS COACHES,unique token BAILEYS contained,272825.4,general_procurement
+D J TRAVEL,D J TRAVEL,near_ratio,DJ TRAVEL,ratio 0.95,271867.64,general_procurement
+GLEN CLEANING COMPANY,Glen Cleaning Company Ltd,near_contain,GLEN CLEANING,unique token GLEN contained,369572.48,general_procurement
+HDS EXPRESS TRANSPORT,HDS EXPRESS TRANSPORT LIMITED,near_contain,SCHOOL EXPRESS,unique token EXPRESS contained,4166.4,grant
+KENNET AND AVON GROUP,Kennet & Avon Group,near_contain,KENNET AND AVON CARS,"tokens ['AVON', 'KENNET'] contained",46940.0,general_procurement
+POTTINGER S HIRE SERVICE,POTTINGER'S HIRE SERVICE,near_ratio,POTTINGERS HIRE SERVICES,ratio 0.96,37410.0,general_procurement
+S RICHARDS T AS K RICKETTS AND S RICHARDS TAXIS,S RICHARDS T/AS K RICKETTS & S RICHARDS TAXIS,near_contain,K RICKETTS AND S RICHARDS,"tokens ['RICHARDS', 'RICKETTS'] contained",68576.0,general_procurement
+SDK ENVIRONMENTAL,SDK Environmental Ltd,near_ratio,SMS ENVIRONMENTAL,ratio 0.88,12380.0,general_procurement
+SWAN ADVOCACY,Swan Advocacy,near_contain,SWAN ADVOCACY NETWORK,"tokens ['ADVOCACY', 'SWAN'] contained",204864.0,care_or_education_placement
