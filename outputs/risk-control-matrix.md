@@ -1,0 +1,23 @@
+# Risk-control matrix
+
+*Generated 2026-10-08 by `build_pack.py` from `audit-plan.json`, `risk-register.md` (revision 2), `auditor-comments.md` by Shihan Wang dated 2026-10-08, `rules.json` and `analytics.json`. Status: DRAFT for challenge, QA review and auditor sign-off.*
+
+**Indicators, not findings.** Every test below checks a control against a pattern in public data. Nothing here asserts wrongdoing by the council, a department, an officer or a supplier.
+
+| Risk | Score | Expected control | Rules | Tests |
+|---|---|---|---|---|
+| R-01: Quotes or tenders not evidenced for spend at or above the quote threshold | 12 (Medium - High) | C-01.1: Spend at or above the quote threshold is competed through the Procurement Portal with at least three invitations to quote, evaluated against criteria notified in advance. | CPR-56, CPR-57, CPR-19, CPR-20 | T-01.1 |
+| R-01: Quotes or tenders not evidenced for spend at or above the quote threshold | 12 (Medium - High) | C-01.2: Every purchase has written evidence and a written contract in a form approved by the Monitoring Officer. | CPR-33, CPR-34 | T-01.2 |
+| R-01: Quotes or tenders not evidenced for spend at or above the quote threshold | 12 (Medium - High) | C-01.3: Any departure from competition is a waiver or exception approved in advance by the S151 Officer or Monitoring Officer, with a written exception report to the relevant board. | CPR-21, CPR-22, CPR-23, CPR-24, CPR-25, CPR-26, CPR-27, CPR-28, CPR-60 | T-01.3 |
+| R-02: Requirements split so each payment stays below the quote threshold | 12 (Medium - High) | C-02.1: Requirements are aggregated over their full value before the procurement route is chosen; no contract is split to stay below a threshold. | CPR-14, CPR-56 | T-02.1 |
+| R-03: Payments bunched just below the quote threshold | 6 (Moderate) | C-03.1: The quote route is set by the genuine total value of the requirement: one quote below the quote threshold, three through the Portal at or above it. | CPR-55, CPR-56 | T-03.1 |
+| R-04: High-value suppliers with no published contract notice | 9 (Medium - High) | C-04.1: Opportunities at or above the quote threshold have a contract notice on the Central Digital Platform, approved by the Service Lead for Procurement; framework call-offs rest on a scheme the Council may use, with Monitoring Officer approval where no further competition is run. | CPR-56, CPR-11, CPR-13, CPR-29, CPR-62 | T-04.1 |
+| R-04: High-value suppliers with no published contract notice | 9 (Medium - High) | C-04.2: Every award is notified to the Service Lead for Commissioning and Procurement and recorded on the published Contract Register. | CPR-36, CPR-08, CPR-07 | T-04.2 |
+| R-05: Spend after a contract notice ended without an approved extension | 9 (Medium - High) | C-05.1: Extensions provided for in the contract are approved by the S151 Officer before the original term ends. | CPR-63 | T-05.1 |
+| R-06: Spend running ahead of the awarded contract value without an approved variation | 12 (Medium - High) | C-06.1: Variations of scope are approved in advance: by the Monitoring Officer and S151 Officer below the Threshold, and by the relevant board above it. | CPR-64 | T-06.1 |
+| R-07: Possible duplicate payments to the same supplier | 9 (Medium - High) | C-07.1: Each payment is supported by its own invoice and written evidence of the purchase, so an invoice cannot be paid twice. | CPR-33 | T-07.1, T-07.2 |
+| R-08: Care and education placements without recorded reasons or board approval | 12 (Medium - High) | C-08.1: The reasons for the choice of provider are recorded on the individual's case notes. | CPR-65 | T-08.1 |
+| R-08: Care and education placements without recorded reasons or board approval | 12 (Medium - High) | C-08.2: Placement contracts whose annual or total value exceeds the Threshold are approved by the relevant board. | CPR-66 | T-08.2 |
+| R-09: Key Decision and delegated-authority approvals for awards above the Key Decision threshold | 12 (Medium - High) | C-09.1: Awards above the Key Decision threshold are made as a Key Decision with a written report approved by the relevant board, following a full tender where the Rules require one. | CPR-04, CPR-53, CPR-58, CPR-30, CPR-32 | T-09.1 |
+| R-09: Key Decision and delegated-authority approvals for awards above the Key Decision threshold | 12 (Medium - High) | C-09.2: Contracts at the Executive threshold or above have Executive approval. | CPR-54 | T-09.2 |
+| R-09: Key Decision and delegated-authority approvals for awards above the Key Decision threshold | 12 (Medium - High) | C-09.3: No award is made without the delegated authority set out in Appendix A, within budget and in accordance with a decision. | CPR-02, CPR-05, CPR-51, CPR-52 | T-09.3 |

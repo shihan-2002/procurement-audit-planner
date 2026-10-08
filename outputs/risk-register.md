@@ -1,8 +1,8 @@
 # Procurement audit planning: risk register
 
-*Status: REVISION 1 for auditor sign-off.*
+*Status: REVISION 2 for auditor sign-off.*
 
-*Revision 1, following auditor comments dated 2026-10-08.
+*Revision 2, following auditor comments dated 2026-10-08.
 Changed: R-09 (amended), R-10 (rejected).*
 
 **Indicators, not findings.** Every risk describes a pattern in public data or a control to test. Nothing here asserts wrongdoing by the council, a department, an officer or a supplier.
@@ -240,12 +240,17 @@ Themes considered and not rated, and risks removed at the gate.
 
 ## Auditor decisions
 
-Decisions by Shihan Wang dated 2026-10-08, applied in revision 1.
+Decisions by Shihan Wang dated 2026-10-08, applied in revision 2.
 
 | ID | Decision | Applied as |
 |---|---|---|
 | R-01 | approve | kept as rated |
+| R-02 | approve | kept as rated |
+| R-06 | approve | kept as rated |
+| R-08 | approve | kept as rated |
 | R-09 | amend | amended (auditor override) |
+| R-04 | approve | kept as rated |
+| R-05 | approve | kept as rated |
+| R-07 | approve | kept as rated |
+| R-03 | approve | kept as rated |
 | R-10 | reject | rejected; moved to excluded |
-
-Still undecided: R-02, R-03, R-04, R-05, R-06, R-07, R-08.

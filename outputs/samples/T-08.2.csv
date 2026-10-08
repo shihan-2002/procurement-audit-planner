@@ -1,0 +1,11 @@
+test,item,group,row_id,source_file,sheet_row,pay_date,supplier,amount,service,narrative
+T-08.2,1,RUSKIN MILL TRUST,Over500_2026_P02_-_published.xlsx:823,Over500_2026_P02_-_published.xlsx,823,2026-05-13,RUSKIN MILL TRUST,179236.76,Adult Social Care,Voluntary Associations
+T-08.2,2,AMEGREEN CHILDRENS SERVICES,Over500_2026_P02_-_published.xlsx:2095,Over500_2026_P02_-_published.xlsx,2095,2026-05-26,Amegreen Childrens Services,36705.55,Children's Social Care,Private Contractors
+T-08.2,3,BRIGHTER LIVING CARE,Over500_2026_P04_-_published.xlsx:3476,Over500_2026_P04_-_published.xlsx,3476,2026-07-29,Brighter Living Care Ltd,78599.04,Adult Social Care,Private Contractors
+T-08.2,4,ACORN CARE AND EDUCATION,Over500_2026_P03_-_published.xlsx:2180,Over500_2026_P03_-_published.xlsx,2180,2026-06-17,ACORN CARE & EDUCATION LTD,28482.93,Education (DSG Funded) & Other Education Grants,Other agencies
+T-08.2,5,CAMINO CARE,Over500_2026_P02_-_published.xlsx:2124,Over500_2026_P02_-_published.xlsx,2124,2026-05-27,Camino Care,94040.67,Children's Social Care,Private Contractors
+T-08.2,6,SM VOICE ADVOCACY,Over500_2026_P03_-_published.xlsx:1625,Over500_2026_P03_-_published.xlsx,1625,2026-06-17,SM Voice Advocacy Limited,15847.26,Adult Social Care,Private Contractors
+T-08.2,7,ABI SUPPORT,Over500_2026_P04_-_published.xlsx:1247,Over500_2026_P04_-_published.xlsx,1247,2026-07-01,Abi-support Ltd,10329.32,Adult Social Care,Private Contractors
+T-08.2,8,CARE SERVICES TO YOU,Over500_2026_P02_-_published.xlsx:2021,Over500_2026_P02_-_published.xlsx,2021,2026-05-01,Care Services To You,23989.77,Children's Social Care,Private Contractors
+T-08.2,9,JOHAV CARE SUPPORT HEALTHCARE,Over500_2026_P04_-_published.xlsx:3140,Over500_2026_P04_-_published.xlsx,3140,2026-07-27,Johav Care support Healthcare Limited,16098.0,Children's Social Care,Private Contractors
+T-08.2,10,DIMENSIONS,Over500_2026_P04_-_published.xlsx:3047,Over500_2026_P04_-_published.xlsx,3047,2026-07-22,DIMENSIONS (NSO) LTD,36422.28,Adult Social Care,Private Contractors
