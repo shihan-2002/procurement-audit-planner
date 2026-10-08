@@ -1,0 +1,22 @@
+{"type": "agent_turn", "agent": "spend-analyst", "text": "Run the spend-analyst."}
+{"type": "agent_turn", "agent": "findings-analyst", "text": "Run the findings-analyst."}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Read", "input": "{\"file_path\": \"outputs/rules.json\"}"}
+{"type": "tool_call", "agent": "findings-analyst", "tool": "Bash", "input": "ls data/committee && for f in data/committee/*.pdf; do pdfinfo \"$f\" | grep Pages; done"}
+{"type": "text", "agent": "spend-analyst", "text": "Thresholds from rules.json: £1,000 (one quote), £25,000 and £500,000 (competition), £2.5m (Executive approval). Statutory tiers skipped: parameters null."}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Bash", "input": ".venv/bin/python -c 'profile each workbook with .head() and .info()'"}
+{"type": "tool_result", "agent": "spend-analyst", "tool": "Bash", "text": "[exit 0]\n3 workbooks · sheet 'Data to publish' · header on row 1 in one file, row 2 in the others · 10,607 rows"}
+{"type": "tool_call", "agent": "findings-analyst", "tool": "Bash", "input": "pdftotext data/committee/<each>.pdf .scratch/committee/<each>.txt && pdftotext -layout ..."}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Write", "input": "scripts/common.py"}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Write", "input": "scripts/clean.py"}
+{"type": "tool_call", "agent": "findings-analyst", "tool": "Read", "input": "{\"file_path\": \".scratch/committee/risk-management-strategy-2024-27.layout.txt\", \"offset\": 560}"}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Write", "input": "scripts/analyse.py"}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Bash", "input": ".venv/bin/python scripts/clean.py && .venv/bin/python scripts/analyse.py"}
+{"type": "tool_result", "agent": "spend-analyst", "tool": "Bash", "text": "[exit 0]\nspend: 10607 rows raw, 8534 kept, 3 months\nsplit_purchases T=25000: 251 windows; general procurement 64 windows / 42 suppliers\nhigh_value_suppliers: 674 (general procurement 228)\nexpired_notice_spend: 7 suppliers\nspend_vs_award: 8 of 19 flagged"}
+{"type": "tool_call", "agent": "findings-analyst", "tool": "Write", "input": "outputs/history.json (20 audits, scoring method, 11 risk themes, 10 discrepancies)"}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Write", "input": "scripts/selfcheck.py"}
+{"type": "tool_call", "agent": "findings-analyst", "tool": "Bash", "input": ".venv/bin/python scripts/verify_history.py outputs/history.json data/committee"}
+{"type": "tool_result", "agent": "findings-analyst", "tool": "Bash", "text": "[exit 0]\nhistory.json: 74 sourced items, 74 quotes, 4 documents\n\nALL CHECKS PASSED"}
+{"type": "tool_call", "agent": "spend-analyst", "tool": "Bash", "input": ".venv/bin/python scripts/selfcheck.py"}
+{"type": "tool_result", "agent": "spend-analyst", "tool": "Bash", "text": "[exit 0]\nselfcheck: 7 matched, 0 failed"}
+{"type": "report", "agent": "findings-analyst", "text": "20 audits recorded; 4 directly about buying (Contract Letting and Accounts Payable: Reasonable; Personal Budgets (Direct Payments): Limited; Purchase of Residential and Nursing Care: Reasonable). No paper lists agreed actions; Appendix D is not in the file. Scoring method usable: 5x5 matrix, Table 4 bands. 10 discrepancies recorded, including Figure 4 vs Table 4."}
+{"type": "report", "agent": "spend-analyst", "text": "10,607 rows, 8,534 after excluding redacted payees, pension contributions and payments to other public bodies. Every figure is in outputs/analytics.json; every flagged payment carries a row_id. Self-check matched one item per test."}

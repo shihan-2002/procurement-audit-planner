@@ -1,0 +1,2 @@
+[{"label": "spend-analyst: scripts/clean.py (replayed run of the agent's own script)", "args": ["scripts/clean.py"]},
+ {"label": "spend-analyst: scripts/analyse.py", "args": ["scripts/analyse.py"]}]

@@ -1,0 +1,21 @@
+# Render Blueprint: New → Blueprint → pick this repository.
+services:
+  - type: web
+    name: procurement-audit-planner
+    runtime: docker
+    plan: starter          # a paid instance does not sleep mid-run; "free" works for replay demos
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY      # required for live mode; replay mode works without it
+        sync: false
+      - key: HARNESS_PASSCODE       # optional: required to start a live run if set
+        sync: false
+      - key: HARNESS_MAX_RUN_USD    # spend cap per live run
+        value: "25"
+      - key: HARNESS_MAX_LIVE_RUNS_PER_DAY
+        value: "5"
+      - key: HARNESS_MODEL
+        value: claude-opus-5-5
+      - key: HARNESS_EFFORT
+        value: high

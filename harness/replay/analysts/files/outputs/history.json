@@ -1,0 +1,938 @@
+{
+  "generated_at": "2026-10-08",
+  "source_documents": [
+    {
+      "file": "audit-completed-work-2024-25-annual.pdf",
+      "title": "Internal Audit Plan Update Report, Appendix A (End of March 2025)",
+      "date": "2025-03-31",
+      "pages": 2,
+      "what_it_is": "completed audits, follow-ups and advisory work for 2024/25"
+    },
+    {
+      "file": "audit-completed-work-2025-26-q3.pdf",
+      "title": "Internal Audit Plan Update Report, Appendix A (End of December 2025)",
+      "date": "2025-12-31",
+      "pages": 1,
+      "what_it_is": "completed audits to Q3 2025/26; no follow-ups or advisory work listed"
+    },
+    {
+      "file": "internal-audit-plan-2025-28.pdf",
+      "title": "Internal Audit Plan 2025-2028 (covering report to Governance Committee)",
+      "date": "2025-04-29",
+      "pages": 7,
+      "what_it_is": "covering report only; Appendices A-F, including the plan itself (Appendix D), are not in the file"
+    },
+    {
+      "file": "risk-management-strategy-2024-27.pdf",
+      "title": "Risk Management Strategy 2024-27 (report and Appendix A)",
+      "date": "2024-12-12",
+      "pages": 35,
+      "what_it_is": "the council's risk scoring method, matrix, bands and appetite"
+    }
+  ],
+  "gaps": [
+    {
+      "item": "corporate_risk_register",
+      "status": "not public (exempt report); not in data/committee/",
+      "consequence": "risk-assessment must use the strategy's method and cannot cite register entries"
+    },
+    {
+      "item": "agreed_actions",
+      "status": "no paper lists individual agreed actions, due dates or overdue items",
+      "searched": [
+        "audit-completed-work-2024-25-annual.pdf",
+        "audit-completed-work-2025-26-q3.pdf",
+        "internal-audit-plan-2025-28.pdf",
+        "risk-management-strategy-2024-27.pdf"
+      ],
+      "what_exists": "follow-up implementation opinions only (Fixed Asset Register, Garland, Westwood Farm)",
+      "consequence": "status of open actions must be requested in fieldwork"
+    },
+    {
+      "item": "planned_audits",
+      "status": "Appendix D (Internal Audit Plan 2025 to 2028) is named in the covering report but not included in the file",
+      "consequence": "planned coverage of procurement in 2025-28 is unknown; do not infer it from the covering text"
+    },
+    {
+      "item": "anti_fraud_work_plan",
+      "status": "Appendix E is named but not included",
+      "consequence": "planned fraud work on procurement is unknown"
+    },
+    {
+      "item": "audit_reports",
+      "status": "only opinions are published; the individual reports (findings, recommendations) are not in the papers",
+      "consequence": "the reasons for the Limited opinion on Personal Budgets (Direct Payments) are unknown"
+    }
+  ],
+  "audits": [
+    {
+      "id": "AUD-01",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Strategy and Governance",
+      "audit_title": "Recruitment (Talent Attraction) and Retention",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "HR process; no purchasing",
+      "quote": "Recruitment (Talent Attraction) and Retention",
+      "note": "opinion read from the layout text; in plain text the title and its opinion are split"
+    },
+    {
+      "id": "AUD-02",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Finance, Property and Procurement",
+      "audit_title": "Accounts Payable",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "direct",
+      "relevance_reason": "tests supplier payment controls",
+      "quote": "Accounts Payable Reasonable Assurance"
+    },
+    {
+      "id": "AUD-03",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "People",
+      "service": "Children with Disabilities and SEN Teams",
+      "audit_title": "Personal Budgets (Direct Payments)",
+      "opinion": "Limited Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "direct",
+      "relevance_reason": "direct payments are a purchasing route for care (Appendix C row F d)",
+      "quote": "Personal Budgets (Direct Payments) Limited Assurance"
+    },
+    {
+      "id": "AUD-04",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "People",
+      "service": "Children and Family",
+      "audit_title": "Separated Children (UASC)",
+      "opinion": "Substantial Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "service commissions placements and support",
+      "quote": "Separated Children (UASC) Substantial Assurance"
+    },
+    {
+      "id": "AUD-05",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "People",
+      "service": "Adult Social Care",
+      "audit_title": "Purchase of Residential and Nursing Care Provision",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "direct",
+      "relevance_reason": "procurement of care placements",
+      "quote": "Purchase of Residential and Nursing Care Provision Reasonable Assurance"
+    },
+    {
+      "id": "AUD-06",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "Winchcombe",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "Winchcombe Reasonable Assurance"
+    },
+    {
+      "id": "AUD-07",
+      "source": "audit-completed-work-2025-26-q3.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of December 2025), Appendix A",
+      "period_end": "2025-12-31",
+      "kind": "completed_audit",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "Curridge",
+      "opinion": "Substantial Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "Curridge Substantial Assurance"
+    },
+    {
+      "id": "AUD-08",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Finance, Property and Procurement",
+      "audit_title": "Contract Letting",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "direct",
+      "relevance_reason": "tests the letting of contracts under the Contract Rules",
+      "quote": "Contract Letting Reasonable Assurance"
+    },
+    {
+      "id": "AUD-09",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Finance, Property and Procurement",
+      "audit_title": "Housing Benefit and Council Tax Hardship Fund",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "benefits administration",
+      "quote": "Housing Benefit and Council Tax Hardship Fund Reasonable Assurance"
+    },
+    {
+      "id": "AUD-10",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Finance, Property and Procurement",
+      "audit_title": "Bank Reconciliation",
+      "opinion": "Substantial Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "financial control over payments made",
+      "quote": "Bank Reconciliation Substantial Assurance"
+    },
+    {
+      "id": "AUD-11",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Resources",
+      "service": "Transformation",
+      "audit_title": "Systems Security (Firewall, Antivirus, Traffic Management)",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "ICT security",
+      "quote": "Systems Security (Firewall, Antivirus, Traffic Management) Reasonable Assurance"
+    },
+    {
+      "id": "AUD-12",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "advisory",
+      "directorate": "People",
+      "service": "Public Health",
+      "audit_title": "Joint Agreement Governance",
+      "opinion": "Advisory - no opinion given",
+      "implementation_opinion": null,
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "governance of joint funding agreements with partners",
+      "quote": "Joint Agreement Governance Advisory - no opinion given"
+    },
+    {
+      "id": "AUD-13",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Place",
+      "service": "Communities",
+      "audit_title": "Public Protection Partnership – Financial Control Processes",
+      "opinion": "Substantial Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "financial control processes in a partnership service",
+      "quote": "Public Protection Partnership – Financial Control Processes Substantial Assurance"
+    },
+    {
+      "id": "AUD-14",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "Springfield",
+      "opinion": "Substantial Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "Springfield Substantial Assurance"
+    },
+    {
+      "id": "AUD-15",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "St Paul’s",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "St Paul’s Reasonable Assurance"
+    },
+    {
+      "id": "AUD-16",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "completed_audit",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "St John and St Nicolas Federation",
+      "opinion": "Reasonable Assurance",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "St John and St Nicolas Federation Reasonable Assurance"
+    },
+    {
+      "id": "AUD-17",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 1,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "follow_up",
+      "directorate": "Resources",
+      "service": "Finance, Property and Procurement",
+      "audit_title": "Fixed Asset Register",
+      "opinion": "Advisory – no opinion",
+      "implementation_opinion": "Satisfactory",
+      "procurement_relevance": "none",
+      "relevance_reason": "asset accounting",
+      "quote": "Fixed Asset Register Overall Opinion - Report Advisory – no opinion Opinion Implementation progress Satisfactory"
+    },
+    {
+      "id": "AUD-18",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 2,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "follow_up",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "Garland (now Burghfield Common Federation)",
+      "opinion": "Weak",
+      "implementation_opinion": "Unsatisfactory",
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "Garland (now Burghfield Common Federation) Weak Unsatisfactory"
+    },
+    {
+      "id": "AUD-19",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 2,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "follow_up",
+      "directorate": "Schools",
+      "service": "Primary",
+      "audit_title": "Westwood Farm",
+      "opinion": "Limited Assurance",
+      "implementation_opinion": "Satisfactory",
+      "procurement_relevance": "none",
+      "relevance_reason": "school audit",
+      "quote": "Limited Assurance Satisfactory",
+      "note": "row reconstructed from the layout text; in plain text the opinions print before the title 'Westwood Farm'"
+    },
+    {
+      "id": "AUD-20",
+      "source": "audit-completed-work-2024-25-annual.pdf",
+      "pdf_page": 2,
+      "report": "Internal Audit Plan Update Report (End of March 2025), Appendix A",
+      "period_end": "2025-03-31",
+      "kind": "advisory",
+      "directorate": "Resources",
+      "service": "Transformation, Customer and ICT",
+      "audit_title": "Transformation SWOT",
+      "opinion": "Advisory - no opinion given",
+      "implementation_opinion": null,
+      "procurement_relevance": "none",
+      "relevance_reason": "transformation advisory review",
+      "quote": "Transformation SWOT"
+    }
+  ],
+  "opinion_basis": {
+    "source": "audit-completed-work-2025-26-q3.pdf",
+    "pdf_page": 1,
+    "text": "Opinions combine the number and significance of recommendations with professional judgement, taking account of depth of coverage and system size/complexity.",
+    "quote": "The overall opinion is derived from the number/significance of recommendations together with using professional judgement.",
+    "also_in": [
+      {
+        "source": "audit-completed-work-2024-25-annual.pdf",
+        "pdf_page": 1,
+        "quote": "The overall opinion is derived from the number/significance of recommendations together with using professional judgement."
+      }
+    ]
+  },
+  "agreed_actions": [],
+  "planned_audits": [],
+  "audit_approach": {
+    "standards": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 3,
+      "value": "Global Internal Audit Standards (GIAS) in the UK Public Sector, from 1 April 2025",
+      "quote": "From 1st April 2025 the Public Sector Internal Auditing Standards will be replaced by the Global Internal Audit Standards (GIAS) in the UK Public Sector."
+    },
+    "plan_period": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 3,
+      "value": "2025-2028, three-year risk-based plan",
+      "quote": "The plan analyses the different areas of the Council’s activity that Internal Audit have risk assessed as needing to be audited over a three-year timeframe."
+    },
+    "team": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 5,
+      "value": "five staff",
+      "quote": "The Audit Team consists of five staff; the Audit Manager, a Principal Auditor, two Senior Auditors and one Auditor post."
+    },
+    "performance_target": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 5,
+      "value": "at least 80% of the plan each year",
+      "quote": "The Audit Team has an in-service reportable performance target to achieve at least 80% of the audit plan for the year."
+    },
+    "plan_entry_contents": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 5,
+      "value": "key risks; risk level; type of audit with links to Council Strategy and Corporate Risk Register; date last reviewed; days estimate and year (5.7 a-e)",
+      "quote": "The level of risk associated with the audit area/function, as assessed by Internal Audit."
+    },
+    "follow_up_reporting": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 5,
+      "value": "monitoring reports on implementation of agreed recommendations are an output of the service",
+      "quote": "Monitoring reports on progress with implementation of agreed audit recommendations."
+    },
+    "appendices_listed": {
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 6,
+      "value": "A Charter, B Strategy, C Reporting Protocol, D Plan 2025-28, E Anti-Fraud Work Plan 2025/26, F Quality and Improvement Programme; none of the appendices is in the file",
+      "quote": "Appendix D - Internal Audit Plan 2025 to 2028;"
+    }
+  },
+  "risk_themes": [
+    {
+      "id": "RT-01",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 11,
+      "section": "3.7",
+      "theme": "Significant pressure on the Council's finances; reserves largely used",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "budget pressure raises the stakes of uncontrolled spend",
+      "quote": "significant pressures on Council finances during 2022/2023 and 2023/24 required utilising almost all earmarked reserves, especially risk reserves."
+    },
+    {
+      "id": "RT-02",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 11,
+      "section": "3.7",
+      "theme": "Rising costs of adult and children's social care and Home to School Transport",
+      "procurement_relevance": "direct",
+      "relevance_reason": "these are the largest purchased services in the spend data",
+      "quote": "the financial pressures here are due to increase of inflationary costs for adult and children social care, increase in complexity and quantity of demand for social care services, increase of Home to School Transport costs"
+    },
+    {
+      "id": "RT-03",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 12,
+      "section": "3.8",
+      "theme": "High demand for social care and housing services",
+      "procurement_relevance": "direct",
+      "relevance_reason": "demand drives placement purchasing volumes",
+      "quote": "Performance data for 2022/23 and 2023/24 shows a significant increase in demand for children’s and adult social care services, and housing services."
+    },
+    {
+      "id": "RT-04",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 12,
+      "section": "3.7",
+      "theme": "Need for a cost base reduction of over £30m",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "savings pressure on contracts and suppliers",
+      "quote": "the need for a cost base reduction of over £30m."
+    },
+    {
+      "id": "RT-05",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 13,
+      "section": "3.11",
+      "theme": "Pressure on public sector finances nationally",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "context for financial resilience",
+      "quote": "Pressure on public sector finances – over the last two years an unprecedented number of Council either issued a S114 report or have requested Exceptional Financial Support from the Government."
+    },
+    {
+      "id": "RT-06",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 9,
+      "section": "2.1 objectives",
+      "theme": "Fraud risk communication",
+      "procurement_relevance": "direct",
+      "relevance_reason": "procurement fraud is a fraud-risk area",
+      "quote": "Increase communication regarding risk exposure especially in relation to fraud risk, and the actions being taken to mitigate risks."
+    },
+    {
+      "id": "RT-07",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 9,
+      "section": "2.1 objectives",
+      "theme": "Re-introduction of a controls assurance process",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "assurance over controls includes purchasing controls",
+      "quote": "Support the re-introduction of a controls assurance process."
+    },
+    {
+      "id": "RT-08",
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 3,
+      "section": "4.8",
+      "theme": "Annual Anti-Fraud Work Plan linked to the Audit Plan (Appendix E, not in the file)",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "fraud work may cover procurement; its content is not in the papers",
+      "quote": "Good practice as stated in CIPFA’s Fighting Fraud and Corruption Locally requires an Annual Anti-Fraud Work Plan to be prepared which links to the Audit Plan, a draft plan is attached as Appendix E."
+    },
+    {
+      "id": "RT-09",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 17,
+      "section": "5.10",
+      "theme": "Financial risk appetite: Flexible, £250k–£500k",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "sets the financial loss the Council aims to operate with",
+      "quote": "The Council aims to operate with a financial risk between £250k – £500k."
+    },
+    {
+      "id": "RT-10",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 17,
+      "section": "5.10",
+      "theme": "Compliance risk appetite: Flexible/Open, including high value transactions",
+      "procurement_relevance": "direct",
+      "relevance_reason": "compliance with procurement rules on high value transactions",
+      "quote": "The Council aims to operate with a legal risk that finely balanced between flexible and open, following approved standards and practices as far as possible but also allowing for innovation, willing to engage in new areas of work, of significant public interest, and related to high value transactions."
+    },
+    {
+      "id": "RT-11",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 11,
+      "section": "3.6",
+      "theme": "External audit of 2021/22 and 2022/23 accounts not completed (disclaimed opinion expected)",
+      "procurement_relevance": "adjacent",
+      "relevance_reason": "less external assurance over financial controls",
+      "quote": "The Financial Statements for 2021-22 and 2022-23 are likely to have a ‘no-fault disclaimed’ opinion."
+    }
+  ],
+  "scoring_method": {
+    "usable": true,
+    "reason": "likelihood scale (Table 2), impact scale (Table 1) and the combining matrix (Figure 1) with RAG bands (Table 4) are all present",
+    "source": "risk-management-strategy-2024-27.pdf",
+    "pdf_page": 14,
+    "section": "4.2",
+    "quote": "The Council evaluates its identified risks on a five-point scale on the likelihood or probability of the risk occurring (rated between rare and certain) and the impact caused should the risk occur (rated between negligible and critical).",
+    "evaluation_levels": [
+      {
+        "level": "gross",
+        "definition": "likelihood and impact without additional, specific mitigation action",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 13,
+        "quote": "Gross level – likelihood and impact without additional, specific mitigation action."
+      },
+      {
+        "level": "actual",
+        "definition": "current likelihood and impact, based on mitigation already in place",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 13,
+        "quote": "Actual level - this is the current likelihood and impact, based on mitigation action already put in place but excluding further mitigation action planned."
+      },
+      {
+        "level": "expected",
+        "definition": "future likelihood and impact after planned additional mitigation",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "Expected level – this is a future level of likelihood and impact based on any additional mitigation action (if any) planned to further address the triggers and the consequences of risks."
+      }
+    ],
+    "likelihood_scale": [
+      {
+        "score": 5,
+        "label": "Certain",
+        "definition": "Risk will occur within a 12 month period",
+        "probability": "100%",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 15,
+        "quote": "Risk will occur within a 12 month period"
+      },
+      {
+        "score": 4,
+        "label": "Almost Certain",
+        "definition": "Risk is almost certain to occur within a 12 month period",
+        "probability": "70% - 99%",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 15,
+        "quote": "Risk is almost certain to occur within a 12 month period"
+      },
+      {
+        "score": 3,
+        "label": "Likely",
+        "definition": "Risk is likely to occur within a 12 month period",
+        "probability": "30% - 69%",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 15,
+        "quote": "Risk is likely to occur within a 12 month period"
+      },
+      {
+        "score": 2,
+        "label": "Unlikely",
+        "definition": "Risk is unlikely to occur within a 12 month period",
+        "probability": "2% - 29%",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 15,
+        "quote": "Risk is unlikely to occur within a 12 month period"
+      },
+      {
+        "score": 1,
+        "label": "Rare",
+        "definition": "Risk is very rare and highly unlikely to occur within a 12 month period",
+        "probability": "<2%",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 15,
+        "quote": "Risk is very rare and highly unlikely to occur within a 12 month period"
+      }
+    ],
+    "impact_scale": [
+      {
+        "score": 5,
+        "label": "Critical",
+        "financial": "> 1% annual WBC budget >£2m",
+        "gbp_low": 2000000,
+        "gbp_high": null,
+        "budget_share": "> 1%",
+        "personal": "Death",
+        "assets": "Destruction of building, IT infrastructure",
+        "reputation": "Front page of national press",
+        "compliance": "Probable legal challenge with penalties. Probable regulatory intervention.",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "5 Critical > 1% annual WBC budget >£2m"
+      },
+      {
+        "score": 4,
+        "label": "Major",
+        "financial": "0.25% - 1% annual WBC budget £500k £2M",
+        "gbp_low": 500000,
+        "gbp_high": 2000000,
+        "budget_share": "0.25% - 1%",
+        "personal": "Permanent disability",
+        "assets": "Majority loss of main building / Loss of main ICT system",
+        "reputation": "Adverse publicity nationally; HSE / Fire Authority prosecution",
+        "compliance": "High possibility of legal challenge. High possibility of regulatory intervention.",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "4 Major 0.25% - 1% annual WBC budget £500k £2M"
+      },
+      {
+        "score": 3,
+        "label": "Medium",
+        "financial": "0.1% - 0.3% annual WBC budget £175k -500k",
+        "gbp_low": 175000,
+        "gbp_high": 500000,
+        "budget_share": "0.1% - 0.3%",
+        "personal": "Major injury / hospitalisation",
+        "assets": "Partial loss of main building or total loss of minor building; temporary loss of major ICT system up to one week",
+        "reputation": "External agency criticism – EG Auditor, Ofsted etc.; HSE / Fire Authority enforcement action",
+        "compliance": "Reasonable possibility of successful legal challenge. Reasonable possibility of regulatory interest.",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "3 Medium 0.1% - 0.3% annual WBC budget £175k -500k"
+      },
+      {
+        "score": 2,
+        "label": "Minor",
+        "financial": "0.01% - 0.1% of annual WBC budget £17.5k - £175k",
+        "gbp_low": 17500,
+        "gbp_high": 175000,
+        "budget_share": "0.01% - 0.1%",
+        "personal": "Major financial loss £1,000+; illness e.g. stress / minor accident / RIDDOR",
+        "assets": "Partial loss of minor building; temporary loss of minor ICT system",
+        "reputation": "Ombudsman complaint upheld",
+        "compliance": "Low possibility of legal challenge. Low possibility regulatory interest",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "2 Minor 0.01% 0.1% of annual WBC budget £17.5k £175k"
+      },
+      {
+        "score": 1,
+        "label": "Negligible",
+        "financial": "Less than 0.01% annual WBC budget £17.5k",
+        "gbp_low": null,
+        "gbp_high": 17500,
+        "budget_share": "< 0.01%",
+        "personal": "Minor financial loss up to £1,000 / complaint / grievance",
+        "assets": "Loss of minor ICT system up to one day",
+        "reputation": "Adverse publicity locally",
+        "compliance": "Negligible possibility of legal challenge or regulatory interest",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 14,
+        "quote": "1 Negligible Less than 0.01% annual WBC budget £17.5k"
+      }
+    ],
+    "combination": {
+      "method": "likelihood x impact, score 1-25",
+      "matrix_labels_by_impact_then_likelihood": {
+        "5": [
+          "Moderate",
+          "High",
+          "Extreme",
+          "Extreme",
+          "Extreme"
+        ],
+        "4": [
+          "Moderate",
+          "High",
+          "High",
+          "Extreme",
+          "Extreme"
+        ],
+        "3": [
+          "Low",
+          "Moderate",
+          "High",
+          "High",
+          "Extreme"
+        ],
+        "2": [
+          "Low",
+          "Moderate",
+          "Moderate",
+          "High",
+          "High"
+        ],
+        "1": [
+          "Low",
+          "Low",
+          "Low",
+          "Moderate",
+          "Moderate"
+        ]
+      },
+      "label_set": [
+        "Low",
+        "Moderate",
+        "High",
+        "Extreme"
+      ],
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 18,
+      "section": "Figure 1",
+      "quote": "The Council has chosen to divide the rating into bands as shown on the risk matrix below, defining the criteria used to manage the risk exposure and reflecting the risk appetite levels described above.",
+      "note": "cell labels read from the layout text of Figure 1; plain text loses the grid"
+    },
+    "bands": [
+      {
+        "level": "Extreme",
+        "rag": "Red",
+        "score_min": 15,
+        "score_max": 25,
+        "escalation": "Add to Corporate Risk Register and mitigation action.",
+        "response": "Allocate to Executive Director to oversee and Service Director implement agreed actions.",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 19,
+        "quote": "15 -25 Add to Corporate Risk Register and mitigation action."
+      },
+      {
+        "level": "Medium - High",
+        "rag": "Amber",
+        "score_min": 8,
+        "score_max": 12,
+        "escalation": "Seek assurance that identified controls are effective",
+        "response": "Allocate to Service Director to put in place Controls Assurance.",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 19,
+        "quote": "8-12 Seek assurance that identified controls are effective"
+      },
+      {
+        "level": "Moderate",
+        "rag": "Amber",
+        "score_min": 4,
+        "score_max": 6,
+        "escalation": "None",
+        "response": "Monitor risk",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 19,
+        "quote": "4-6 None Monitor risk"
+      },
+      {
+        "level": "Low",
+        "rag": "Green",
+        "score_min": 1,
+        "score_max": 3,
+        "escalation": "None",
+        "response": "Consider at next annual review",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 19,
+        "quote": "Up to 3 None Consider at next annual review"
+      }
+    ],
+    "corporate_register_threshold": {
+      "score": 9,
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 21,
+      "section": "Figure 4",
+      "quote": "Includes risks that: • Score 9 or above",
+      "note": "conflicts with Table 4, which adds risks scoring 15-25 to the Corporate Risk Register (see discrepancies D-01)"
+    },
+    "appetite": [
+      {
+        "category": "financial",
+        "level": "Flexible",
+        "descriptor": "aims to operate with a financial risk between £250k and £500k",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 17,
+        "quote": "Financial Risk Appetite – Flexible"
+      },
+      {
+        "category": "compliance",
+        "level": "Flexible/Open",
+        "descriptor": "finely balanced between flexible and open, including high value transactions",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 17,
+        "quote": "Compliance Risk Appetite – Flexible/Open"
+      },
+      {
+        "category": "reputation",
+        "level": "Open",
+        "descriptor": "possible significant reputational damage or enhancement accepted in seeking new ways of working",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 17,
+        "quote": "Reputation Risk appetite – Open"
+      },
+      {
+        "category": "operational",
+        "level": "Open",
+        "descriptor": "open appetite for innovation in service delivery models",
+        "source": "risk-management-strategy-2024-27.pdf",
+        "pdf_page": 18,
+        "quote": "Operational risk appetite – Open"
+      }
+    ]
+  },
+  "discrepancies": [
+    {
+      "id": "D-01",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 21,
+      "item": "Corporate Risk Register threshold",
+      "detail": "Figure 4 says the Corporate Risk Register includes risks that score 9 or above; Table 4 (p.19) says only Extreme risks scoring 15-25 are added to it.",
+      "quote": "Includes risks that: • Score 9 or above"
+    },
+    {
+      "id": "D-02",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 14,
+      "item": "Impact label numbering in 4.3",
+      "detail": "Clause 4.3 lists 'Medium (2)'; Table 1 and Figure 1 give Medium the score 3.",
+      "quote": "Negligible (1), Minor (2), Medium (2), Major (4), or Critical impact(5)"
+    },
+    {
+      "id": "D-03",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 14,
+      "item": "Overlapping financial impact bands",
+      "detail": "Major is 0.25% - 1% of budget and Medium is 0.1% - 0.3%; the bands overlap between 0.25% and 0.3%. The £ figures (£175k-500k, £500k-£2M) share boundaries.",
+      "quote": "4 Major 0.25% - 1% annual WBC budget £500k £2M"
+    },
+    {
+      "id": "D-04",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 19,
+      "item": "Band naming",
+      "detail": "Figure 1 labels the 8-12 cells 'High'; Table 4 names the band 'Medium - High (Amber)'.",
+      "quote": "8-12 Seek assurance that identified controls are effective"
+    },
+    {
+      "id": "D-05",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 14,
+      "item": "Minor financial band text",
+      "detail": "The plain text prints '0.01% 0.1% of'; the layout text shows '0.01% - 0.1%'. Recorded from the layout.",
+      "quote": "2 Minor 0.01% 0.1% of annual WBC budget £17.5k £175k"
+    },
+    {
+      "id": "D-06",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 21,
+      "item": "Typo in escalation clause",
+      "detail": "Clause 6.3 reads 'extrene (Red)'.",
+      "quote": "Where risk levels are considered to be extrene (Red) on the risk matrix"
+    },
+    {
+      "id": "D-07",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 21,
+      "item": "Committee name",
+      "detail": "Figure 4 refers to a six-monthly 'Governance and Ethics Committee'; the covering report is to the Governance Committee.",
+      "quote": "Six monthly Governance and Ethics Committee"
+    },
+    {
+      "id": "D-08",
+      "source": "internal-audit-plan-2025-28.pdf",
+      "pdf_page": 3,
+      "item": "Resource sufficiency wording",
+      "detail": "4.7 says resource is sufficient to meet the plan; 5.8 (p.5) says resource is approximately in line with planned days.",
+      "quote": "The plan over the three-year period shows the level of resource is sufficient to meet the planned programme of work."
+    },
+    {
+      "id": "D-09",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 15,
+      "item": "Dated context in 4.5",
+      "detail": "4.5 still refers to the ongoing coronavirus pandemic as a short and medium term factor in a 2024-27 strategy.",
+      "quote": "due to the ongoing international crisis as a result of the coronavirus pandemic"
+    },
+    {
+      "id": "D-10",
+      "source": "risk-management-strategy-2024-27.pdf",
+      "pdf_page": 20,
+      "item": "Objective wording",
+      "detail": "Section 5 objective says 'an increased risk appetite' while 2.1 (p.9) says 'a changed risk appetite'.",
+      "quote": "Implement the new risk matrix reflecting an increased risk appetite and the tolerances set in this risk strategy"
+    }
+  ]
+}

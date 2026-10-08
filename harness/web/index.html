@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Procurement Audit Planner</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23b4532a'/><path d='M9 9h14M9 15h14M9 21h9' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf9;--ink:#1f1d1a;--muted:#6b665d;--line:#e4dfd4;--accent:#b4532a;--accent-soft:#f6e5dc;
+--ok:#3f7a4a;--ok-soft:#e3efe2;--warn:#a36a12;--warn-soft:#f6ebd2;--bad:#a83a32;--bad-soft:#f6dedb;--team:#6a4fb3;--team-soft:#ece6f8;
+--sub:#2f6f86;--sub-soft:#dfeef3;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171614;--panel:#201f1c;--ink:#ece8e1;--muted:#a39d92;--line:#35322d;--accent:#e07b4f;--accent-soft:#3a2a22;
+--ok:#7cc08a;--ok-soft:#21321f;--warn:#e0b05a;--warn-soft:#352c19;--bad:#e6837a;--bad-soft:#3a2321;--team:#b29df0;--team-soft:#2c2540;--sub:#7cc2d9;--sub-soft:#1d2f36}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
+a{color:var(--accent)}button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}button:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:6px 8px}
+header{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+header h1{font-size:17px;margin:0}header .sub{color:var(--muted);font-size:12.5px}.grow{flex:1}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.team{background:var(--team-soft);color:var(--team)}.pill.sub{background:var(--sub-soft);color:var(--sub)}
+main{max-width:1440px;margin:0 auto;padding:18px 20px 60px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.muted{color:var(--muted)}.small{font-size:12.5px}h2{font-size:15px;margin:0 0 10px}h3{font-size:14px;margin:0 0 6px}
+#home .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0}
+.flow div{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);font-size:12.5px}
+.flow b{display:block;font-size:13px}
+.modes{display:grid;gap:12px}.mode{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--bg)}
+#run{display:none;grid-template-columns:290px minmax(0,1fr);gap:18px}
+.stages{display:flex;flex-direction:column;gap:8px}
+.stage{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+.stage .top{display:flex;align-items:center;gap:8px}.stage .t{font-weight:600;font-size:13px;flex:1}
+.stage .note{font-size:12px;color:var(--muted);margin-top:4px;word-break:break-word}
+.stage.running{border-color:var(--accent)}.stage.done{border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none}
+.running .dot{background:var(--accent);animation:pulse 1s infinite}.done .dot{background:var(--ok)}.failed .dot{background:var(--bad)}.waiting .dot{background:var(--warn)}
+@keyframes pulse{50%{opacity:.35}}
+.agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-bottom:12px}
+.agent{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel);min-height:96px}
+.agent.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.agent .name{font-weight:600}.agent .meta{font-size:11.5px;color:var(--muted)}
+.bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--accent)}
+.agent .last{font:11.5px/1.4 var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.tabs button{padding:5px 10px;font-size:12.5px}.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#log{height:520px;overflow:auto;font-size:12.5px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:8px}
+.ev{padding:5px 6px;border-bottom:1px dashed var(--line);display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px}
+.ev .who{font-weight:600;font-size:12px}.ev .what{min-width:0;word-break:break-word}
+.ev code,.ev pre{font:12px/1.45 var(--mono)}.ev pre{white-space:pre-wrap;margin:4px 0 0;max-height:180px;overflow:auto;background:var(--panel);padding:6px;border-radius:6px}
+.ev.message .what{background:var(--team-soft);border-radius:6px;padding:4px 8px}.ev.check .what{background:var(--sub-soft);border-radius:6px;padding:4px 8px}
+.ev.human .what{background:var(--warn-soft);border-radius:6px;padding:4px 8px}.ev.report .what{background:var(--ok-soft);border-radius:6px;padding:4px 8px}
+.ev.error .what,.ev.tool_error .what{background:var(--bad-soft);border-radius:6px;padding:4px 8px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+#viewer{max-height:640px;overflow:auto}#viewer pre{font:12px/1.45 var(--mono);white-space:pre-wrap}
+.md table{border-collapse:collapse;font-size:12.5px;margin:8px 0;display:block;overflow-x:auto}.md th,.md td{border:1px solid var(--line);padding:4px 6px;vertical-align:top}
+.md h1{font-size:18px}.md h2{font-size:16px}.md h3{font-size:14px}.md code{font:12px var(--mono);background:var(--bg);padding:1px 4px;border-radius:4px}
+.gate table{width:100%;border-collapse:collapse;font-size:13px}.gate th,.gate td{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+.gate td input[type=text]{width:100%;min-width:200px}.gate select{min-width:96px}
+.files{display:flex;flex-direction:column;gap:3px;max-height:260px;overflow:auto}.files button{text-align:left;font:12px var(--mono);padding:4px 8px;border:none;background:none;color:var(--ink)}
+.files button:hover{background:var(--bg)}
+.banner{border:1px solid var(--warn);background:var(--warn-soft);color:var(--ink);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:13px}
+.err{border-color:var(--bad);background:var(--bad-soft)}
+@media (max-width:1200px){.grid2{grid-template-columns:1fr}}
+@media (max-width:900px){#home .hero,.grid2,#run{grid-template-columns:1fr!important}.flow{grid-template-columns:repeat(2,1fr)}main{padding:14px 16px}#log{height:420px}.ev{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Procurement Audit Planner</h1><div class="sub">An independent agent harness for the skills, sub-agents, human gates and agent team built in Part A</div></div>
+  <div class="grow"></div>
+  <span id="modeBadge" class="pill" style="display:none"></span>
+  <span id="cost" class="pill sub" style="display:none"></span>
+  <button id="homeBtn" style="display:none">New run</button>
+</header>
+<main>
+<section id="home">
+  <div class="hero">
+    <div class="card">
+      <h2>Plan an internal audit of West Berkshire Council's procurement from its public data</h2>
+      <p class="muted">The harness runs the same project files Claude Code ran in Part A: <code>CLAUDE.md</code>, three skills in <code>.claude/skills/</code> and six agents in <code>.claude/agents/</code>. It drives them through the Claude API with its own agent loop, sandboxed tools and orchestrator. Every quote, figure, trace and sample is checked by the project's scripts, and two decisions stay with you.</p>
+      <div class="flow">
+        <div><span class="pill">Skill</span><b>/extract-rules</b>Contract Rules PDF → rules.json</div>
+        <div><span class="pill sub">Sub-agents</span><b>spend ‖ findings</b>analytics.json · history.json</div>
+        <div><span class="pill sub">Sub-agent</span><b>risk-assessor</b>risk-register.md</div>
+        <div><span class="pill warn">You</span><b>Auditor gate</b>approve · amend · reject</div>
+        <div><span class="pill team">Agent team</span><b>planner · challenger · QA</b>the audit planning pack</div>
+        <div><span class="pill warn">You</span><b>Sign-off</b>review.md</div>
+      </div>
+      <p class="small muted">Built from public data published by West Berkshire Council. The system produces risk indicators to investigate, never findings of wrongdoing.</p>
+      <h3 style="margin-top:14px">What the harness runs</h3>
+      <div id="projectList" class="files"></div>
+    </div>
+    <div class="modes">
+      <div class="mode">
+        <h3>Live run <span id="liveState" class="pill"></span></h3>
+        <p class="small muted">Every judgment is made by Claude (<span id="modelName"></span>) through the API: the skill reads the rulebook, the analysts write and run Python, the risk-assessor rates, the team plans, challenges and checks. Expect 30 to 60 minutes and a few dollars; the server caps each run's spend.</p>
+        <div id="passWrap" style="display:none;margin-bottom:8px"><input id="pass" type="password" placeholder="Live-mode passcode" style="width:100%"></div>
+        <button class="primary" id="liveBtn">Start a live run</button>
+      </div>
+      <div class="mode">
+        <h3>Replay run <span class="pill ok">no API key needed</span></h3>
+        <p class="small muted">Replays the model judgments of a recorded live run (rules, history, first ratings, the plan, the challenges). Everything else runs for real on a fresh workspace: the spend-analyst's scripts, every verifier, the register and pack builders, all four QA checks. Your gate decisions change the result.</p>
+        <button id="replayBtn">Start a replay run</button>
+      </div>
+      <div class="mode"><h3>Recent runs</h3><div id="recent" class="small muted">none yet</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="run">
+  <aside>
+    <div class="stages" id="stages"></div>
+    <div class="card" style="margin-top:12px">
+      <h3>Outputs</h3>
+      <div id="outFiles" class="files small muted">none yet</div>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><a id="dl" href="#"><button>Download pack (.zip)</button></a><button id="stopBtn">Stop</button></div>
+    </div>
+  </aside>
+  <div>
+    <div id="banner"></div>
+    <div id="gatePanel" class="card gate" style="display:none;margin-bottom:14px"></div>
+    <div id="signPanel" class="card" style="display:none;margin-bottom:14px"></div>
+    <div class="agents" id="agents"></div>
+    <div class="grid2">
+      <div class="card">
+        <div class="tabs" id="filters"></div>
+        <div id="log"></div>
+      </div>
+      <div class="card">
+        <div class="tabs" id="viewTabs"></div>
+        <div id="viewer" class="md small muted">Open an output on the left to read it here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s), esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let CFG=null, RUN=null, ES=null, FILTER="all", AGENTS={}, OPEN=[];
+const KIND={main:"skill","spend-analyst":"sub","findings-analyst":"sub","risk-assessor":"sub",planner:"team",challenger:"team","qa-reviewer":"team",harness:"check",lead:"lead",auditor:"human"};
+async function api(p,opt){const r=await fetch(p,opt);const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.detail||r.statusText);return j}
+function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
+
+async function boot(){
+  CFG=await api("/api/config");
+  $("#modelName").textContent=`${CFG.model}, effort ${CFG.effort}`;
+  $("#liveState").textContent=CFG.live_available?"available":"not configured";$("#liveState").className="pill "+(CFG.live_available?"ok":"bad");
+  $("#liveBtn").disabled=!CFG.live_available;$("#passWrap").style.display=CFG.passcode_required?"block":"none";
+  const pj=await api("/api/project");
+  $("#projectList").innerHTML=pj.items.map(i=>`<button data-p="${esc(i.path)}"><span class="pill ${i.kind=="skill"?"":"sub"}">${i.kind}</span> ${esc(i.name)} <span class="muted">${esc(i.tools||i.files?.join(", ")||"")}</span></button>`).join("")
+    +`<button data-p="CLAUDE.md"><span class="pill warn">brief</span> CLAUDE.md</button>`;
+  $("#projectList").querySelectorAll("button").forEach(b=>b.onclick=async()=>{const f=await api("/api/project/file?path="+encodeURIComponent(b.dataset.p));showModal(f.path,f.text)});
+  const rr=await api("/api/runs");
+  if(rr.runs.length)$("#recent").innerHTML=rr.runs.map(r=>`<div><a href="#${r.id}">${r.id}</a> · ${r.mode} · ${r.done}/${r.stages} stages</div>`).join("");
+  const h=location.hash.slice(1); if(h) openRun(h);
+}
+function showModal(title,text){const w=window.open("","_blank");w.document.write(`<title>${esc(title)}</title><pre style="white-space:pre-wrap;font:13px ui-monospace,monospace;padding:16px">${esc(text)}</pre>`)}
+$("#replayBtn").onclick=()=>newRun("replay");$("#liveBtn").onclick=()=>newRun("live");$("#homeBtn").onclick=()=>{location.hash="";location.reload()};
+async function newRun(mode){try{const r=await post("/api/runs",{mode,passcode:$("#pass").value});location.hash=r.id;openRun(r.id)}catch(e){alert(e.message)}}
+
+async function openRun(id){
+  RUN=await api("/api/runs/"+id).catch(e=>{alert(e.message);return null}); if(!RUN)return;
+  $("#home").style.display="none";$("#run").style.display="grid";$("#homeBtn").style.display="";
+  $("#dl").href=`/api/runs/${id}/download`;$("#stopBtn").onclick=()=>post(`/api/runs/${id}/stop`);
+  AGENTS={};$("#log").innerHTML="";renderFilters();renderState(RUN);
+  if(ES)ES.close();ES=new EventSource(`/api/runs/${id}/events?after=-1`);
+  ES.onmessage=e=>addEvent(JSON.parse(e.data));
+  ES.addEventListener("state",e=>renderState(JSON.parse(e.data)));
+}
+function renderState(s){
+  RUN=s;$("#modeBadge").style.display="";$("#modeBadge").textContent=s.mode=="live"?`live · ${s.model}`:"replay · no API calls";
+  $("#modeBadge").className="pill "+(s.mode=="live"?"":"ok");
+  $("#cost").style.display=s.mode=="live"?"":"none";$("#cost").textContent=`$${s.usd_total.toFixed(2)} of $${s.usd_cap} cap`;
+  const order=s.stages.map(x=>x.id);
+  $("#stages").innerHTML=s.stages.map((st,i)=>{
+    const prevDone=s.stages.slice(0,i).every(x=>x.status=="done");
+    const can=!s.busy&&prevDone&&(st.status=="pending"||st.status=="failed")&&st.kind!="human";
+    return `<div class="stage ${st.status}"><div class="top"><span class="dot"></span><span class="t">${esc(st.title)}</span>
+      ${can?`<button class="primary" data-s="${st.id}">Run</button>`:""}</div>
+      <div class="note">${esc(st.lesson)} · ${esc(st.status)}${st.note?" · "+esc(st.note):""}</div></div>`}).join("");
+  $("#stages").querySelectorAll("button[data-s]").forEach(b=>b.onclick=()=>runStage(b.dataset.s));
+  $("#banner").innerHTML=s.error?`<div class="banner err">${esc(s.error)}</div>`:(s.mode=="replay"?`<div class="banner">Replay mode: model judgments come from a recorded live run; every script, builder and check runs now, on this run's workspace. Your gate decisions are applied for real.</div>`:"");
+  $("#outFiles").innerHTML=s.outputs.length?s.outputs.map(p=>`<button data-p="${esc(p)}">${esc(p.replace("outputs/",""))}</button>`).join(""):"none yet";
+  $("#outFiles").querySelectorAll("button").forEach(b=>b.onclick=()=>openFile(b.dataset.p));
+  const st=Object.fromEntries(s.stages.map(x=>[x.id,x.status]));
+  if(st.risk=="done"&&st.gate!="done"&&!s.busy)showGate();else $("#gatePanel").style.display="none";
+  if(st.team=="done"&&st.signoff!="done"&&!s.busy)showSign();else $("#signPanel").style.display="none";
+  for(const [k,v] of Object.entries(s.usage||{})){agent(k).usd=v.usd}
+  renderAgents();
+}
+async function runStage(id,payload={}){try{payload.passcode=$("#pass").value;await post(`/api/runs/${RUN.id}/stages/${id}`,payload)}catch(e){alert(e.message)}}
+
+function agent(n){return AGENTS[n]||(AGENTS[n]={name:n,last:"",ctx:0,usd:0,active:false,n:0})}
+function renderAgents(){
+  const list=Object.values(AGENTS).filter(a=>!["harness","auditor"].includes(a.name));
+  $("#agents").innerHTML=list.map(a=>{const k=KIND[a.name]||"sub";const pill={skill:'<span class="pill">skill · main context</span>',sub:'<span class="pill sub">sub-agent · own context</span>',team:'<span class="pill team">teammate · own context</span>',lead:'<span class="pill warn">lead</span>'}[k]||"";
+    return `<div class="agent ${a.active?"active":""}"><div class="name">${esc(a.name)}</div>${pill}
+    <div class="bar" title="context window used"><i style="width:${Math.min(100,a.ctx/2000)}%"></i></div>
+    <div class="meta">${a.n} steps · context ${Math.round(a.ctx/1000)}k tokens${RUN?.mode=="live"?` · $${(a.usd||0).toFixed(2)}`:""}</div>
+    <div class="last">${esc(a.last)}</div></div>`}).join("");
+}
+function renderFilters(){
+  const opts=["all","messages","checks","reports"];
+  $("#filters").innerHTML=opts.map(o=>`<button class="${o==FILTER?"on":""}" data-f="${o}">${o}</button>`).join("");
+  $("#filters").querySelectorAll("button").forEach(b=>b.onclick=()=>{FILTER=b.dataset.f;renderFilters();applyFilter()});
+}
+function applyFilter(){document.querySelectorAll("#log .ev").forEach(d=>{const t=d.dataset.type;d.style.display=FILTER=="all"||(FILTER=="messages"&&t=="message")||(FILTER=="checks"&&(t=="check"||t=="check_start"))||(FILTER=="reports"&&["report","human","stage_end"].includes(t))?"":"none"})}
+function addEvent(ev){
+  const who=ev.agent||(ev.stage?"stage":"run");
+  if(ev.agent){const a=agent(ev.agent);a.n++;Object.values(AGENTS).forEach(x=>x.active=false);a.active=ev.type!="report";
+    if(ev.type=="tool_call")a.last=`${ev.tool} ${ev.input}`;if(ev.type=="usage"){a.ctx=ev.context;a.usd=ev.usd}
+    if(ev.type=="message")a.last=`→ ${ev.to}: ${ev.text}`;if(ev.type=="report")a.last="reported"}
+  if(ev.type=="usage"){renderAgents();return}
+  let what="";
+  switch(ev.type){
+    case "tool_call":what=`<code>${esc(ev.tool)}</code> ${esc(ev.input)}`;break;
+    case "tool_result":what=`<span class="muted">${esc(ev.tool)} result</span><pre>${esc(ev.text)}</pre>`;break;
+    case "tool_error":case "error":case "warn":what=`${esc(ev.text)}`;break;
+    case "check_start":what=`<span class="muted">running</span> <code>${esc(ev.command?.split("/").slice(-3).join("/"))}</code> ${esc(ev.text)}`;break;
+    case "check":what=`<b>${ev.exit==0?"PASS":"FAIL"}</b> ${esc(ev.text)}<pre>${esc(ev.output)}</pre>`;break;
+    case "message":what=`<b>${esc(ev.agent)} → ${esc(ev.to)}</b> ${esc(ev.text)}`;break;
+    case "stage_start":what=`<b>Stage started:</b> ${esc(ev.stage)}`;break;
+    case "stage_end":what=`<b>Stage ${esc(ev.status)}:</b> ${esc(ev.stage)} ${esc(ev.text||"")}`;break;
+    case "report":what=`<b>Report</b><div class="md">${md(ev.text)}</div>`;break;
+    case "agent_turn":what=`<span class="muted">prompt:</span> ${esc(ev.text.slice(0,600))}`;break;
+    default:what=esc(ev.text||"");
+  }
+  const d=document.createElement("div");d.className="ev "+ev.type;d.dataset.type=ev.type;
+  d.innerHTML=`<div class="who">${esc(who)}${ev.replay?' <span class="pill ok">replay</span>':""}</div><div class="what">${what}</div>`;
+  const log=$("#log"),stick=log.scrollTop+log.clientHeight>log.scrollHeight-60;log.appendChild(d);if(stick)log.scrollTop=log.scrollHeight;
+  applyFilter();renderAgents();
+}
+function md(t){try{return marked.parse(t||"")}catch(e){return `<pre>${esc(t)}</pre>`}}
+async function openFile(p){
+  const f=await api(`/api/runs/${RUN.id}/file?path=${encodeURIComponent(p)}`);
+  if(!OPEN.includes(p))OPEN.push(p);OPEN=OPEN.slice(-6);
+  $("#viewTabs").innerHTML=OPEN.map(x=>`<button class="${x==p?"on":""}" data-p="${esc(x)}">${esc(x.split("/").pop())}</button>`).join("");
+  $("#viewTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>openFile(b.dataset.p));
+  const v=$("#viewer");v.classList.remove("muted");
+  if(p.endsWith(".md"))v.innerHTML=md(f.text);
+  else if(p.endsWith(".json")){let t=f.text;try{t=JSON.stringify(JSON.parse(t),null,2)}catch(e){};v.innerHTML=`<pre>${esc(t.slice(0,400000))}</pre>`}
+  else v.innerHTML=`<pre>${esc(f.text.slice(0,400000))}</pre>`;
+}
+async function showGate(){
+  const p=$("#gatePanel");if(p.dataset.run==RUN.id&&p.style.display=="block")return;
+  const g=await api(`/api/runs/${RUN.id}/gate`).catch(()=>null);if(!g)return;
+  p.dataset.run=RUN.id;p.style.display="block";
+  const opt=v=>["","approve","amend","reject"].map(o=>`<option ${o==v?"selected":""} value="${o}">${o||"undecided"}</option>`).join("");
+  const n=[1,2,3,4,5].map(x=>`<option>${x}</option>`).join("");
+  p.innerHTML=`<h2>Human gate: your decision on every risk</h2>
+   <p class="small muted">Read <a href="#" id="openReg">risk-register.md</a> first. Approve keeps a risk as rated; amend changes it (say how, and optionally set new scores); reject removes it from the audit with your reason. Nothing reaches the agent team until every risk has a decision. Example from the guide: approve R-01, amend R-09 to likelihood 3, reject R-10.</p>
+   <table><tr><th>ID</th><th>Risk</th><th>L×I</th><th>Band</th><th>Scope</th><th>Decision</th><th>Comment</th><th>New L / I</th></tr>
+   ${g.rows.map(r=>{const d=g.decisions[r.id]||{};return `<tr data-id="${r.id}"><td>${r.id}</td><td>${esc(r.title)}</td><td>${r.L}×${r.I}=${r.score}</td><td>${esc(r.band)}</td><td>${r.scope}</td>
+     <td><select class="dec">${opt(d.decision)}</select></td><td><input type="text" class="com" value="${esc(d.comment||"")}" placeholder="required for amend / reject"></td>
+     <td><select class="nl"><option value="">L</option>${n}</select> <select class="ni"><option value="">I</option>${n}</select></td></tr>`}).join("")}</table>
+   <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap"><input id="reviewer" placeholder="Reviewer name"> <button id="apprAll">Approve all undecided</button>
+   <button class="primary" id="saveGate">Record decisions and revise the register</button></div>`;
+  $("#openReg").onclick=e=>{e.preventDefault();openFile("outputs/risk-register.md")};
+  $("#apprAll").onclick=()=>p.querySelectorAll("select.dec").forEach(s=>{if(!s.value)s.value="approve"});
+  $("#saveGate").onclick=()=>{const decisions={};p.querySelectorAll("tr[data-id]").forEach(tr=>{const d=tr.querySelector(".dec").value;if(d)decisions[tr.dataset.id]={decision:d,comment:tr.querySelector(".com").value,likelihood:tr.querySelector(".nl").value,impact:tr.querySelector(".ni").value}});
+    if(!$("#reviewer").value.trim())return alert("Enter the reviewer's name");p.style.display="none";p.dataset.run="";runStage("gate",{reviewer:$("#reviewer").value,decisions})};
+}
+async function showSign(){
+  const p=$("#signPanel");if(p.dataset.run==RUN.id&&p.style.display=="block")return;
+  const rv=await api(`/api/runs/${RUN.id}/file?path=outputs/review.md`).catch(()=>null);if(!rv)return;
+  const ch=await api(`/api/runs/${RUN.id}/file?path=outputs/challenges.md`).catch(()=>({text:""}));
+  const forA=(ch.text.split("## For the auditor at sign-off")[1]||"none").trim();
+  p.dataset.run=RUN.id;p.style.display="block";
+  const ready=rv.text.includes("READY FOR SIGN-OFF");
+  p.innerHTML=`<h2>Human gate: sign-off</h2><p><span class="pill ${ready?"ok":"bad"}">${ready?"QA: READY FOR SIGN-OFF":"QA: BLOCKED"}</span></p>
+   <div class="grid2"><div class="md small">${md(rv.text.split("## Auditor sign-off")[0])}</div><div class="md small"><h3>Points marked for the auditor</h3>${md(forA)}</div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="soName" placeholder="Your name"><select id="soDec"><option>sign off</option><option>return to the team</option></select>
+   <input id="soCom" placeholder="Comment" style="flex:1;min-width:200px"><button class="primary" id="soBtn" ${ready?"":"disabled"}>Record sign-off</button></div>`;
+  $("#soBtn").onclick=()=>{if(!$("#soName").value.trim())return alert("Enter your name");p.style.display="none";p.dataset.run="";runStage("signoff",{name:$("#soName").value,decision:$("#soDec").value,comment:$("#soCom").value})};
+}
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h&&(!RUN||RUN.id!=h))openRun(h)});
+boot();
+</script>
+</body>
+</html>
