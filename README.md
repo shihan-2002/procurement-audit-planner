@@ -59,6 +59,34 @@ contract-rules.pdf ──/extract-rules (SKILL, main context)──▶ rules.jso
 - **The team argues with itself.** The planner, challenger and QA reviewer message each other directly using the protocol `PACK READY vN`, `CHALLENGE #n`, `RESPONSE #n`, `QA vN: FAIL` and `… DONE`. The lead only routes and waits.
 - **Memory holds how-to only.** `.claude/agent-memory/<agent>/MEMORY.md` records lessons such as format quirks and builder pitfalls. It never stores figures or findings.
 
+### How the design maps to Module 2
+
+| Module 2 idea | Where it shows up here |
+|---|---|
+| **Orchestrator + subagents.** The orchestrator coordinates and does not execute. | The lead (Claude Code's main session in Part A, `orchestrator.py` in Part B) decides what runs, launches it, relays reports and enforces the gates. It never rates a risk or drafts a test. |
+| **Isolated context windows** | The spend-analyst reads ~10,600 payments and the findings-analyst reads 45 pages of committee papers, each in its own window. Only summaries return, and the risk-assessor sees three JSON summaries, never the raw data. |
+| **Sequential where work depends** | rules → analytics → register → gate → pack. Each stage needs the previous stage's file. |
+| **Parallel where it doesn't** | The spend-analyst and findings-analyst share no inputs, so they run at the same time. Wall-clock time is the slower of the two. |
+| **Shared spec as the coordination layer** | `rules.json`, then the approved register, then `audit-plan.json`. The teammates never edit each other's files; they work from the same spec and talk only through the message protocol. |
+| **Specialisation by function, not volume** | Extraction, spend analytics, document reading, rating, planning, challenge and QA are each one agent with clear inputs, outputs and a "Not this agent's job" section. |
+| **Agents defined in `.claude/agents/`.** The file *is* the system prompt. | Six definitions, each with tools, owned files, an output contract and memory rules. Part B builds its agents directly from these files. |
+
+The four failure modes from the lesson, and the design move that prevents each here:
+
+| Failure mode | Design fix in this project |
+|---|---|
+| **Context leakage** | Minimal task briefs ("Run the spend-analyst."). Agents inspect data with aggregates only, full lists go to `analytics-full/`, and memory never carries evidence between runs. |
+| **Coordination gaps** | Each file has exactly one owner. The builders refuse inputs that don't trace, for example a plan entry for a risk the auditor did not approve. The team's protocol messages name the pack version. |
+| **Cascading failures** | Every stage ends with its own check (verifier, self-check, builder). A failed check stops that stage and reports; it does not pass a bad file downstream. A BLOCKED QA verdict sends the pack back to the team, never to the auditor. |
+| **Prompt drift** | Prompts are written as acceptance criteria: exact schemas, citation rules, sample sizing by score, word limits, and scripts that reject anything vague, such as an uncited rating, a typed figure or a missing rule. |
+
+Part B follows the three-layer architecture:
+- **Frontend:** a single HTML page with no build step.
+- **Backend:** FastAPI for runs, stages, gates, files and the event stream.
+- **AI backend:** the Claude API, called by the harness's own agent loop.
+
+In Module 1's terms, the model thinks and the harness does: tools, context, permissions, budgets and the run log.
+
 ### Results of the Part A run
 
 | Output | Result |
