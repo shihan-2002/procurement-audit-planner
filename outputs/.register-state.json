@@ -1,0 +1,55 @@
+{
+  "revision": 0,
+  "risks": {
+    "R-01": {
+      "L": 4,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-02": {
+      "L": 4,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-03": {
+      "L": 2,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-04": {
+      "L": 3,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-05": {
+      "L": 3,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-06": {
+      "L": 3,
+      "I": 4,
+      "in_scope": true
+    },
+    "R-07": {
+      "L": 3,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-08": {
+      "L": 4,
+      "I": 3,
+      "in_scope": true
+    },
+    "R-09": {
+      "L": 2,
+      "I": 4,
+      "in_scope": true
+    },
+    "R-10": {
+      "L": 2,
+      "I": 3,
+      "in_scope": false
+    }
+  }
+}
